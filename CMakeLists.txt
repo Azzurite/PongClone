@@ -30,29 +30,46 @@ macro (add_tests)
     endif()
 endmacro()
 
-################# PROJECT START #################
+
+###### PROJECT START ######
 project(Pong)
+include_directories($ENV{INCLUDE})
 
-################# Compiler flags ################
+
+###### Compiler flags ######
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -pedantic -Wextra")
-set(CMAKE_CXX_FLAGS_DEBUG "-Og -g3")
+set(CMAKE_CXX_FLAGS_DEBUG "-Og -g3 -DDEBUG")
 
 
-############### Main executable ##############
+###### Find SDL2 lib ######
+find_package(SDL2 REQUIRED)
+
+if (NOT SDL2_FOUND) 
+	message(SEND_ERROR "SDL2 not found! Adjust or provide a FindSDL2.cmake!")
+	return() 
+endif (NOT SDL2_FOUND)
+
+include_directories(${SDL2_INCLUDE_DIRS})
+
+
+###### Main executable ######
 add_subdirectory("lib")
 
 add_subdirectory("src")
 
-include_directories($ENV{INCLUDE} "src")
+include_directories("src")
 
 get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
 foreach(dir ${dirs})
   message(STATUS "src_include_dir ='${dir}'")
 endforeach()
 
-add_executable(Pong src/Main.cpp ${SOURCE_FILES})
+add_executable(pong src/Main.cpp ${SOURCE_FILES})
+message(STATUS "linked libraries:  ${SDL2_LIBRARIES}")
+target_link_libraries(pong ${SDL2_LIBRARIES})
 
-######## Add SDL2.dll to output #######
+
+###### Add SDL2.dll to main output ######
 add_custom_command(TARGET Pong POST_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy_if_different
 	"${PROJECT_SOURCE_DIR}/lib/SDL2.dll"
@@ -60,22 +77,22 @@ add_custom_command(TARGET Pong POST_BUILD
 	
 #install(TARGETS Pong RUNTIME DESTINATION bin)
 
-############### UnitTest executable ##############
 
+###### UnitTest executable ######
 add_subdirectory("test")
-
-include_directories($ENV{INCLUDE})
 
 get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
 foreach(dir ${dirs})
   message(STATUS "test_include_dir ='${dir}'")
 endforeach()
 
-add_executable(PongUnitTests test/Main.cpp ${SOURCE_FILES} ${TEST_FILES})
-target_link_libraries(PongUnitTests GTest)
-target_link_libraries(PongUnitTests GMock)
+add_executable(pong_tests test/Main.cpp ${SOURCE_FILES} ${TEST_FILES})
+target_link_libraries(pong_tests GTest)
+target_link_libraries(pong_tests GMock)
+target_link_libraries(pong_tests ${SDL2_LIBRARIES})
 
-######## Add SDL2.dll to output #######
+
+###### Add SDL2.dll to test output ######
 add_custom_command(TARGET PongUnitTests POST_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy_if_different
 	"${PROJECT_SOURCE_DIR}/lib/SDL2.dll"
