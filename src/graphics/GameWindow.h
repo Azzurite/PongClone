@@ -23,7 +23,7 @@
 #ifndef GAMEWINDOW_H_
 #define GAMEWINDOW_H_
 
-#include <SDL2/SDL.h>
+#include "SDL.h"
 
 namespace pong {
 namespace graphics {
@@ -62,6 +62,8 @@ public:
 
 private:
 	SDL_Window* mainWindow = nullptr;
+
+	SDL_Renderer* renderer = nullptr;
 };
 
 } /* namespace graphics */

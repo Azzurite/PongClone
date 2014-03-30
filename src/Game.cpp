@@ -20,9 +20,15 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <Game.h>
+#include "Game.h"
 
-#include <SDL2/SDL.h>
+
+#include <iostream>
+#include <string>
+#include "SDL.h"
+
+#include "graphics/GameWindow.h"
+using pong::graphics::GameWindow;
 
 namespace pong {
 
@@ -39,9 +45,14 @@ Game& Game::operator=(const Game& toCopy) noexcept = delete;
 Game& Game::operator=(Game&& toMove) noexcept = delete;
 
 int Game::run() {
-	SDL_Delay(5000);
+	GameWindow mainWindow;
+
+    //SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SDL_NumJoysticks", std::to_string(SDL_NumJoysticks()).c_str(), nullptr);
+
+	SDL_Delay(1000);
 	return 0;
 }
+
 
 void Game::init() {
 

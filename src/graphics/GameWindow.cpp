@@ -20,10 +20,12 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <graphics/GameWindow.h>
+#include "graphics/GameWindow.h"
 
 #include <windows.h>
-#include <SDL2/SDL.h>
+#include <string>
+#include <stdexcept>
+#include "SDL.h"
 
 namespace pong {
 namespace graphics {
@@ -33,15 +35,47 @@ namespace {
 }
 
 GameWindow::GameWindow() {
-	LoadLibrary("SDL2.dll");
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
-		throw "SDL_INIT_ERROR";
+		throw std::runtime_error("SDL_INIT_ERROR");
 	}
 
-	mainWindow = SDL_CreateWindow(cPONG_WINDOW_NAME, 0, 0, 800, 600, SDL_WINDOW_SHOWN);
+	mainWindow = SDL_CreateWindow(cPONG_WINDOW_NAME, 100, 100, 1024, 768, SDL_WINDOW_SHOWN);
 	if (mainWindow == nullptr) {
-		throw "Window could not be created.";
+		throw std::runtime_error("Window could not be created.");
 	}
+
+	renderer = SDL_CreateRenderer(mainWindow, -1, 0);
+	if (renderer == nullptr) {
+		throw std::runtime_error{"Renderer could not be created."};
+	}
+
+	SDL_Surface* momoSurf = SDL_LoadBMP("E:\\programming\\test\\files\\momo.bmp");
+	if (momoSurf == nullptr) {
+		throw std::runtime_error(std::string("Error loading BMP with RWops: ") + std::string(SDL_GetError()));
+	}
+
+	SDL_Texture *momoTex = SDL_CreateTextureFromSurface(renderer, momoSurf);
+	if (momoTex == nullptr) {
+		throw std::runtime_error(std::string("Error creating texture from surface: ") + std::string(SDL_GetError()));
+	}
+
+	SDL_Rect srcRec;
+	srcRec.x = 0;
+	srcRec.y = 0;
+	srcRec.w = momoSurf->w;
+	srcRec.h = momoSurf->h;
+
+	SDL_Rect destRec;
+	destRec.x = 1024 / 2 - momoSurf->w / 2;
+	destRec.y = 768 / 2 - momoSurf->h / 2;
+	destRec.w = momoSurf->w;
+	destRec.h = momoSurf->h;
+
+
+	SDL_RenderCopy(renderer, momoTex, &srcRec, &destRec);
+	SDL_RenderPresent(renderer);
+
+	SDL_FreeSurface(momoSurf);
 }
 
 GameWindow::GameWindow(const GameWindow&) noexcept = default;
