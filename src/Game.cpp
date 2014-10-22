@@ -22,9 +22,8 @@
 
 #include "Game.h"
 
-
+#include <stdexcept>
 #include <iostream>
-#include <string>
 #include "SDL.h"
 
 #include "graphics/GameWindow.h"
@@ -45,14 +44,17 @@ Game& Game::operator=(const Game& toCopy) noexcept = delete;
 Game& Game::operator=(Game&& toMove) noexcept = delete;
 
 int Game::run() {
-	GameWindow mainWindow;
+    if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
+        throw std::runtime_error(SDL_GetError());
+    }
 
-    //SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SDL_NumJoysticks", std::to_string(SDL_NumJoysticks()).c_str(), nullptr);
+    GameWindow mainWindow;
 
-	SDL_Delay(1000);
-	return 0;
+    SDL_Delay(1000);
+
+    SDL_Quit();
+    return 0;
 }
-
 
 void Game::init() {
 

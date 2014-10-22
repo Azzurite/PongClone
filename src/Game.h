@@ -67,8 +67,6 @@ public:
 
 private:
 
-	graphics::GameWindow mainWindow;
-
 	/**
 	 * \brief initialize the game
 	 */

@@ -1,19 +1,17 @@
 # Necessary environment variables: QT_PATH, INCLUDE
 cmake_minimum_required(VERSION 2.8.12.1)
 set(_ECLIPSE_VERSION "4.3")
+include (add_macros.cmake)
 
 ###### Project Settings ######
 set(PROJECT_NAME "Pong_Clone")
 set(QT_PROJECT FALSE)
 set(SDL2_PROJECT TRUE)
-	
 
 ###### Project Setup ######
 if (${QT_PROJECT}) 
 	set(CMAKE_PREFIX_PATH $ENV{QT_PATH})
 endif()
-
-include (add_macros.cmake)
 
 ###### PROJECT START ######
 project(${PROJECT_NAME})

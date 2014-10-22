@@ -22,8 +22,8 @@
 
 #include "graphics/GameWindow.h"
 
-#include <windows.h>
 #include <string>
+#include <sstream>
 #include <stdexcept>
 #include "SDL.h"
 
@@ -35,45 +35,48 @@ namespace {
 }
 
 GameWindow::GameWindow() {
-	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
-		throw std::runtime_error("SDL_INIT_ERROR");
-	}
-
 	mainWindow = SDL_CreateWindow(cPONG_WINDOW_NAME, 100, 100, 1024, 768, SDL_WINDOW_SHOWN);
 	if (mainWindow == nullptr) {
-		throw std::runtime_error("Window could not be created.");
+		throw std::runtime_error(std::string{"Window could not be created:"} + SDL_GetError());
 	}
 
 	renderer = SDL_CreateRenderer(mainWindow, -1, 0);
 	if (renderer == nullptr) {
-		throw std::runtime_error{"Renderer could not be created."};
+		throw std::runtime_error(std::string{"Renderer could not be created: "} + SDL_GetError());
 	}
 
-	SDL_Surface* momoSurf = SDL_LoadBMP("E:\\programming\\test\\files\\momo.bmp");
+	SDL_Surface* momoSurf = SDL_LoadBMP("C:\\programming\\data\\test\\momo.bmp");
 	if (momoSurf == nullptr) {
-		throw std::runtime_error(std::string("Error loading BMP with RWops: ") + std::string(SDL_GetError()));
+		throw std::runtime_error(std::string{"Error loading BMP with RWops: "} + SDL_GetError());
 	}
 
 	SDL_Texture *momoTex = SDL_CreateTextureFromSurface(renderer, momoSurf);
 	if (momoTex == nullptr) {
-		throw std::runtime_error(std::string("Error creating texture from surface: ") + std::string(SDL_GetError()));
+		throw std::runtime_error(std::string{"Error creating texture from surface: "} + SDL_GetError());
 	}
 
-	SDL_Rect srcRec;
-	srcRec.x = 0;
-	srcRec.y = 0;
-	srcRec.w = momoSurf->w;
-	srcRec.h = momoSurf->h;
+	SDL_Rect srcRec{0,
+            0,
+            momoSurf->w,
+            momoSurf->h};
 
-	SDL_Rect destRec;
-	destRec.x = 1024 / 2 - momoSurf->w / 2;
-	destRec.y = 768 / 2 - momoSurf->h / 2;
-	destRec.w = momoSurf->w;
-	destRec.h = momoSurf->h;
-
+	SDL_Rect destRec{1024 / 2 - momoSurf->w / 2,
+            768 / 2 - momoSurf->h / 2,
+			momoSurf->w,
+			momoSurf->h};
 
 	SDL_RenderCopy(renderer, momoTex, &srcRec, &destRec);
 	SDL_RenderPresent(renderer);
+
+	int w;
+	int h;
+
+	SDL_GetRendererOutputSize(renderer, &w, &h);
+
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,
+			"target correct?",
+			(std::to_string(w) + " " + std::to_string(h)).c_str(),
+			nullptr);
 
 	SDL_FreeSurface(momoSurf);
 }
@@ -82,7 +85,11 @@ GameWindow::GameWindow(const GameWindow&) noexcept = default;
 
 GameWindow::GameWindow(GameWindow&&) noexcept = default;
 
-GameWindow::~GameWindow() noexcept = default;
+GameWindow::~GameWindow() noexcept {
+	SDL_DestroyRenderer(renderer);
+
+	SDL_DestroyWindow(mainWindow);
+}
 
 GameWindow& GameWindow::operator=(const GameWindow&) noexcept = default;
 

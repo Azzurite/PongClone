@@ -12,23 +12,23 @@
 
 namespace {
 
-class GameWindowTest : public ::testing::Test {
-public:
-	GameWindowTest() {
+    class GameWindowTest : public ::testing::Test {
+    public:
+        GameWindowTest() {
 
-	}
-	virtual void SetUp() {
-	}
+        }
+        virtual void SetUp() {
+        }
 
-	virtual ~GameWindowTest() {
+        virtual ~GameWindowTest() {
 
-	}
-	virtual void TearDown() {
-	}
+        }
+        virtual void TearDown() {
+        }
 
-};
+    };
 
-TEST_F(GameWindowTest, DefaultTest) {
-
-}
+    TEST_F(GameWindowTest, DefaultTest) {
+        pong::graphics::GameWindow w;
+    }
 }
