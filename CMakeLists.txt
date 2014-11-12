@@ -3,10 +3,14 @@ cmake_minimum_required(VERSION 2.8.12.1)
 set(_ECLIPSE_VERSION "4.3")
 include (add_macros.cmake)
 
+set(USER_NAME "Azzu")
+
 ###### Project Settings ######
 set(PROJECT_NAME "Pong_Clone")
 set(QT_PROJECT FALSE)
 set(SDL2_PROJECT TRUE)
+set(BOOST_PROJECT FALSE)
+set(BOOST_COMPONENTS system chrono date_time thread)
 
 ###### Project Setup ######
 if (${QT_PROJECT}) 
@@ -23,8 +27,8 @@ if (${QT_PROJECT})
 endif()
 
 ###### Compiler flags ######
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -pedantic -Wextra")
-set(CMAKE_CXX_FLAGS_DEBUG "-Og -g3 -DDEBUG")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -Wall -pedantic -Wextra")
+set(CMAKE_CXX_FLAGS_DEBUG "-Og -ggdb -DDEBUG")
 
 if (${QT_PROJECT})
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
@@ -45,6 +49,20 @@ endif()
 ###### Find Qt ######
 if (${QT_PROJECT}) 
 	find_package(Qt5Widgets REQUIRED)
+endif()
+
+###### Find Boost ######
+if (${BOOST_PROJECT})
+    SET(BOOST_ROOT "P:/tools/compilers/MinGW/")
+    find_package(Boost REQUIRED COMPONENTS ${BOOST_COMPONENTS})
+    if (NOT Boost_FOUND)
+        message(SEND_ERROR "Boost not found")
+    endif()
+    if (Boost_FOUND)
+        include_directories(${Boost_INCLUDE_DIR})
+        add_definitions("-DHAS_BOOST")
+        list (APPEND STATIC_LIBRARIES ${Boost_LIBRARIES})
+    endif()
 endif()
 
 ###### Main executable ######

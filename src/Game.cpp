@@ -31,6 +31,16 @@ using pong::graphics::GameWindow;
 
 namespace pong {
 
+// public:
+
+// region ===== Aliases =====
+// endregion ===== Aliases =====
+
+// region ===== Constants =====
+// endregion ===== Constants =====
+
+// region ===== (De- &) Constructors =====
+
 Game::Game() noexcept = default;
 
 Game::Game(const Game& toCopy) noexcept = delete;
@@ -39,25 +49,60 @@ Game::Game(Game&& toMove) noexcept = delete;
 
 Game::~Game() noexcept = default;
 
+// endregion ===== (De- &) Constructors =====
+
+// region ===== Operators =====
+
 Game& Game::operator=(const Game& toCopy) noexcept = delete;
 
 Game& Game::operator=(Game&& toMove) noexcept = delete;
 
-int Game::run() {
-    if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
-        throw std::runtime_error(SDL_GetError());
-    }
+// endregion ===== Operators =====
 
-    GameWindow mainWindow;
+// region ===== Methods =====
 
-    SDL_Delay(1000);
+int Game::run()
+{
+	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
+		throw std::runtime_error(SDL_GetError());
+	}
 
-    SDL_Quit();
-    return 0;
+	GameWindow mainWindow;
+
+	SDL_Delay(1000);
+
+	SDL_Quit();
+	return 0;
 }
+
+// endregion ===== Methods =====
+
+// region ===== Members =====
+// endregion ===== Members =====
+
+
+// private:
+
+// region ===== Aliases =====
+// endregion ===== Aliases =====
+
+// region ===== Constants =====
+// endregion ===== Constants =====
+
+// region ===== (De- &) Constructors =====
+// endregion ===== (De- &) Constructors =====
+
+// region ===== Operators =====
+// endregion ===== Operators =====
+
+// region ===== Methods =====
 
 void Game::init() {
 
 }
 
-} /* namespace pong */
+// endregion ===== Methods =====
+
+// region ===== Members =====
+// endregion ===== Members =====
+} // namespace pong

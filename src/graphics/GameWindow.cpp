@@ -30,11 +30,21 @@
 namespace pong {
 namespace graphics {
 
+// public:
+
+// region ===== Aliases =====
+// endregion ===== Aliases =====
+
+// region ===== Constants =====
 namespace {
 	const char* const cPONG_WINDOW_NAME = "Pong";
 }
+// endregion ===== Constants =====
 
-GameWindow::GameWindow() {
+// region ===== (De- &) Constructors =====
+
+GameWindow::GameWindow()
+{
 	mainWindow = SDL_CreateWindow(cPONG_WINDOW_NAME, 100, 100, 1024, 768, SDL_WINDOW_SHOWN);
 	if (mainWindow == nullptr) {
 		throw std::runtime_error(std::string{"Window could not be created:"} + SDL_GetError());
@@ -56,12 +66,12 @@ GameWindow::GameWindow() {
 	}
 
 	SDL_Rect srcRec{0,
-            0,
-            momoSurf->w,
-            momoSurf->h};
+			0,
+			momoSurf->w,
+			momoSurf->h};
 
 	SDL_Rect destRec{1024 / 2 - momoSurf->w / 2,
-            768 / 2 - momoSurf->h / 2,
+			768 / 2 - momoSurf->h / 2,
 			momoSurf->w,
 			momoSurf->h};
 
@@ -85,15 +95,29 @@ GameWindow::GameWindow(const GameWindow&) noexcept = default;
 
 GameWindow::GameWindow(GameWindow&&) noexcept = default;
 
-GameWindow::~GameWindow() noexcept {
+GameWindow::~GameWindow() noexcept
+{
 	SDL_DestroyRenderer(renderer);
 
 	SDL_DestroyWindow(mainWindow);
 }
 
+// endregion ===== (De- &) Constructors =====
+
+// region ===== Operators =====
+
 GameWindow& GameWindow::operator=(const GameWindow&) noexcept = default;
 
 GameWindow& GameWindow::operator=(GameWindow&&) noexcept = default;
 
-} /* namespace graphics */
-} /* namespace pong */
+// endregion ===== Operators =====
+
+// region ===== Methods =====
+// endregion ===== Methods =====
+
+// region ===== Members =====
+// endregion ===== Members =====
+
+
+}} // namespace pong::graphics
+

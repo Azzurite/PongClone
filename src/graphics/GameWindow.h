@@ -20,52 +20,91 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GAMEWINDOW_H_
-#define GAMEWINDOW_H_
+#pragma once
 
 #include "SDL.h"
 
 namespace pong {
 namespace graphics {
 
-class GameWindow {
+class GameWindow
+{
 public:
+	// region ===== Aliases =====
+	// endregion ===== Aliases =====
+
+	// region ===== Constants =====
+	// endregion ===== Constants =====
+
+	// region ===== (De- &) Constructors =====
+
 	/**
-	 * \brief Default constructor.
-	 */
+	* \brief Default constructor.
+	*/
 	GameWindow();
 
 	/**
-	 * \brief Default copy constructor.
-	 */
+	* \brief Default copy constructor.
+	*/
 	GameWindow(const GameWindow&) noexcept;
 
 	/**
-	 * \brief Default move constructor.
-	 */
+	* \brief Default move constructor.
+	*/
 	GameWindow(GameWindow&&) noexcept;
 
 	/**
-	 * \brief Default destructor.
-	 */
+	* \brief Default destructor.
+	*/
 	~GameWindow() noexcept;
 
+	// endregion ===== (De- &) Constructors =====
+
+	// region ===== Operators =====
+
+
 	/**
-	 * \brief Default copy assignment operator.
-	 */
+	* \brief Default copy assignment operator.
+	*/
 	GameWindow& operator=(const GameWindow&) noexcept;
 
 	/**
-	 * \brief Default move assignment operator.
-	 */
+	* \brief Default move assignment operator.
+	*/
 	GameWindow& operator=(GameWindow&&) noexcept;
 
+	// endregion ===== Operators =====
+
+	// region ===== Methods =====
+	// endregion ===== Methods =====
+
+	// region ===== Members =====
+	// endregion ===== Members =====
+
+
 private:
+	// region ===== Aliases =====
+	// endregion ===== Aliases =====
+
+	// region ===== Constants =====
+	// endregion ===== Constants =====
+
+	// region ===== (De- &) Constructors =====
+	// endregion ===== (De- &) Constructors =====
+
+	// region ===== Operators =====
+	// endregion ===== Operators =====
+
+	// region ===== Methods =====
+	// endregion ===== Methods =====
+
+	// region ===== Members =====
+
 	SDL_Window* mainWindow = nullptr;
 
 	SDL_Renderer* renderer = nullptr;
+
+	// endregion ===== Members =====
 };
 
-} /* namespace graphics */
-} /* namespace pong */
-#endif /* GAMEWINDOW_H_ */
+}} // namespace pong::graphics

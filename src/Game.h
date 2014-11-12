@@ -20,58 +20,96 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GAME_H_
-#define GAME_H_
+#pragma once
 
 #include "graphics/GameWindow.h"
 
 namespace pong {
 
-class Game {
+class Game
+{
 public:
+	// region ===== Aliases =====
+	// endregion ===== Aliases =====
+
+	// region ===== Constants =====
+	// endregion ===== Constants =====
+
+	// region ===== (De- &) Constructors =====
+
 	/**
-	 * \brief Default constructor.
-	 */
+	* \brief Default constructor.
+	*/
 	Game() noexcept;
 
 	/**
-	 * \brief Default copy constructor, deleted
-	 */
+	* \brief Default copy constructor, deleted
+	*/
 	Game(const Game& toCopy) noexcept;
 
 	/**
-	 * \brief Default move constructor, deleted
-	 */
+	* \brief Default move constructor, deleted
+	*/
 	Game(Game&& toMove) noexcept;
 
 	/**
-	 * \brief Default destructor.
-	 */
+	* \brief Default destructor.
+	*/
 	~Game() noexcept;
 
+	// endregion ===== (De- &) Constructors =====
+
+	// region ===== Operators =====
+
 	/**
-	 * \brief Default copy assignment operator, deleted
-	 */
+	* \brief Default copy assignment operator, deleted
+	*/
 	Game& operator=(const Game& toCopy) noexcept;
 
 	/**
-	 * \brief Default move assignment operator, deleted
-	 */
+	* \brief Default move assignment operator, deleted
+	*/
 	Game& operator=(Game&& toMove) noexcept;
 
+	// endregion ===== Operators =====
+
+	// region ===== Methods =====
 
 	/**
-	 * \brief Runs the game.
-	 */
+	* \brief Runs the game.
+	*/
 	int run();
 
+	// endregion ===== Methods =====
+
+	// region ===== Members =====
+	// endregion ===== Members =====
+
 private:
+	// region ===== Aliases =====
+	// endregion ===== Aliases =====
+
+	// region ===== Constants =====
+	// endregion ===== Constants =====
+
+	// region ===== (De- &) Constructors =====
+	// endregion ===== (De- &) Constructors =====
+
+	// region ===== Operators =====
+	// endregion ===== Operators =====
+
+	// region ===== Methods =====
 
 	/**
-	 * \brief initialize the game
-	 */
+	* \brief initialize the game
+	*/
 	void init();
+
+	// endregion ===== Methods =====
+
+	// region ===== Members =====
+	// endregion ===== Members =====
+
 };
 
-} /* namespace pong */
-#endif /* GAME_H_ */
+} // namespace pong
