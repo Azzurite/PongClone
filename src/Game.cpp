@@ -24,6 +24,7 @@
 
 #include <stdexcept>
 #include <iostream>
+#include <c++/4.9.1/typeinfo>
 #include "SDL.h"
 
 #include "graphics/GameWindow.h"
@@ -37,6 +38,9 @@ namespace pong {
 // endregion ===== Aliases =====
 
 // region ===== Constants =====
+namespace {
+constexpr unsigned c_USED_SDL_SUBSYSTEMS = SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS;
+}
 // endregion ===== Constants =====
 
 // region ===== (De- &) Constructors =====
@@ -63,7 +67,7 @@ Game& Game::operator=(Game&& toMove) noexcept = delete;
 
 int Game::run()
 {
-	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
+	if (SDL_Init(c_USED_SDL_SUBSYSTEMS) != 0) {
 		throw std::runtime_error(SDL_GetError());
 	}
 
