@@ -1,6 +1,5 @@
 # Necessary environment variables: QT_PATH, INCLUDE
 cmake_minimum_required(VERSION 2.8.12.1)
-set(_ECLIPSE_VERSION "4.3")
 include (add_macros.cmake)
 
 set(USER_NAME "Azzu")
@@ -9,6 +8,7 @@ set(USER_NAME "Azzu")
 set(PROJECT_NAME "Pong_Clone")
 set(QT_PROJECT FALSE)
 set(SDL2_PROJECT TRUE)
+set(SDL2_TTF_PROJECT TRUE)
 set(BOOST_PROJECT FALSE)
 set(BOOST_COMPONENTS system chrono date_time thread)
 
@@ -44,6 +44,19 @@ if (${SDL2_PROJECT})
 	endif (NOT SDL2_FOUND)
 
 	include_directories(${SDL2_INCLUDE_DIRS})
+endif()
+
+
+###### Find SDL2_TTF lib ######
+if (${SDL2_TTF_PROJECT})
+	find_package(SDL2_ttf REQUIRED)
+
+	if (NOT SDL2_TTF_FOUND)
+		message(SEND_ERROR "SDL2_TTF not found! Adjust or provide a FindSDL2_ttf.cmake!")
+		return()
+	endif (NOT SDL2_TTF_FOUND)
+
+	include_directories(${SDL2_TTF_INCLUDE_DIRS})
 endif()
 
 ###### Find Qt ######
