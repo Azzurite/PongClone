@@ -30,13 +30,6 @@ namespace graphics {
 class GameWindow
 {
 public:
-	// region ===== Aliases =====
-	// endregion ===== Aliases =====
-
-	// region ===== Constants =====
-	// endregion ===== Constants =====
-
-	// region ===== (De- &) Constructors =====
 
 	/**
 	* \brief Default constructor.
@@ -58,9 +51,6 @@ public:
 	*/
 	~GameWindow() noexcept;
 
-	// endregion ===== (De- &) Constructors =====
-
-	// region ===== Operators =====
 
 
 	/**
@@ -73,38 +63,15 @@ public:
 	*/
 	GameWindow& operator=(GameWindow&&) noexcept;
 
-	// endregion ===== Operators =====
 
-	// region ===== Methods =====
-	// endregion ===== Methods =====
-
-	// region ===== Members =====
-	// endregion ===== Members =====
 
 
 private:
-	// region ===== Aliases =====
-	// endregion ===== Aliases =====
 
-	// region ===== Constants =====
-	// endregion ===== Constants =====
 
-	// region ===== (De- &) Constructors =====
-	// endregion ===== (De- &) Constructors =====
-
-	// region ===== Operators =====
-	// endregion ===== Operators =====
-
-	// region ===== Methods =====
-	// endregion ===== Methods =====
-
-	// region ===== Members =====
 
 	SDL_Window* mainWindow = nullptr;
-
 	SDL_Renderer* renderer = nullptr;
-
-	// endregion ===== Members =====
 };
 
 }} // namespace pong::graphics

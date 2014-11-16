@@ -30,18 +30,12 @@
 namespace pong {
 namespace graphics {
 
-// public:
-
-// region ===== Aliases =====
-// endregion ===== Aliases =====
-
-// region ===== Constants =====
 namespace {
 	const char* const cPONG_WINDOW_NAME = "Pong";
 }
-// endregion ===== Constants =====
 
-// region ===== (De- &) Constructors =====
+// ====== public: ======
+
 
 GameWindow::GameWindow()
 {
@@ -102,21 +96,16 @@ GameWindow::~GameWindow() noexcept
 	SDL_DestroyWindow(mainWindow);
 }
 
-// endregion ===== (De- &) Constructors =====
-
-// region ===== Operators =====
 
 GameWindow& GameWindow::operator=(const GameWindow&) noexcept = default;
 
 GameWindow& GameWindow::operator=(GameWindow&&) noexcept = default;
 
-// endregion ===== Operators =====
 
-// region ===== Methods =====
-// endregion ===== Methods =====
 
-// region ===== Members =====
-// endregion ===== Members =====
+// ====== protected: ======
+
+// ====== private: ======
 
 
 }} // namespace pong::graphics

@@ -29,13 +29,6 @@ namespace pong {
 class Game
 {
 public:
-	// region ===== Aliases =====
-	// endregion ===== Aliases =====
-
-	// region ===== Constants =====
-	// endregion ===== Constants =====
-
-	// region ===== (De- &) Constructors =====
 
 	/**
 	* \brief Default constructor.
@@ -57,9 +50,6 @@ public:
 	*/
 	~Game() noexcept;
 
-	// endregion ===== (De- &) Constructors =====
-
-	// region ===== Operators =====
 
 	/**
 	* \brief Default copy assignment operator, deleted
@@ -71,44 +61,19 @@ public:
 	*/
 	Game& operator=(Game&& toMove) noexcept;
 
-	// endregion ===== Operators =====
-
-	// region ===== Methods =====
 
 	/**
 	* \brief Runs the game.
 	*/
 	int run();
 
-	// endregion ===== Methods =====
-
-	// region ===== Members =====
-	// endregion ===== Members =====
 
 private:
-	// region ===== Aliases =====
-	// endregion ===== Aliases =====
-
-	// region ===== Constants =====
-	// endregion ===== Constants =====
-
-	// region ===== (De- &) Constructors =====
-	// endregion ===== (De- &) Constructors =====
-
-	// region ===== Operators =====
-	// endregion ===== Operators =====
-
-	// region ===== Methods =====
 
 	/**
 	* \brief initialize the game
 	*/
 	void init();
-
-	// endregion ===== Methods =====
-
-	// region ===== Members =====
-	// endregion ===== Members =====
 
 };
 

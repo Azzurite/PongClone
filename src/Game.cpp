@@ -32,18 +32,11 @@ using pong::graphics::GameWindow;
 
 namespace pong {
 
-// public:
-
-// region ===== Aliases =====
-// endregion ===== Aliases =====
-
-// region ===== Constants =====
 namespace {
 constexpr unsigned c_USED_SDL_SUBSYSTEMS = SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS;
 }
-// endregion ===== Constants =====
 
-// region ===== (De- &) Constructors =====
+// ====== public: ======
 
 Game::Game() noexcept = default;
 
@@ -53,17 +46,12 @@ Game::Game(Game&& toMove) noexcept = delete;
 
 Game::~Game() noexcept = default;
 
-// endregion ===== (De- &) Constructors =====
-
-// region ===== Operators =====
 
 Game& Game::operator=(const Game& toCopy) noexcept = delete;
 
 Game& Game::operator=(Game&& toMove) noexcept = delete;
 
-// endregion ===== Operators =====
 
-// region ===== Methods =====
 
 int Game::run()
 {
@@ -79,34 +67,13 @@ int Game::run()
 	return 0;
 }
 
-// endregion ===== Methods =====
 
-// region ===== Members =====
-// endregion ===== Members =====
+// ====== protected: ======
 
-
-// private:
-
-// region ===== Aliases =====
-// endregion ===== Aliases =====
-
-// region ===== Constants =====
-// endregion ===== Constants =====
-
-// region ===== (De- &) Constructors =====
-// endregion ===== (De- &) Constructors =====
-
-// region ===== Operators =====
-// endregion ===== Operators =====
-
-// region ===== Methods =====
+// ====== private: ======
 
 void Game::init() {
 
 }
 
-// endregion ===== Methods =====
-
-// region ===== Members =====
-// endregion ===== Members =====
 } // namespace pong
