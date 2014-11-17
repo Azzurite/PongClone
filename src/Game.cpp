@@ -24,8 +24,10 @@
 
 #include <stdexcept>
 #include <iostream>
-#include <c++/4.9.1/typeinfo>
+#include <memory>
 #include "SDL.h"
+#include "SDL_image.h"
+#include "SDL_ttf.h"
 
 #include "graphics/GameWindow.h"
 using pong::graphics::GameWindow;
@@ -33,12 +35,12 @@ using pong::graphics::GameWindow;
 namespace pong {
 
 namespace {
-constexpr unsigned c_USED_SDL_SUBSYSTEMS = SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS;
+constexpr unsigned cUSED_SDL_SUBSYSTEMS = SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS;
 }
 
 // ====== public: ======
 
-Game::Game() noexcept = default;
+Game::Game() = default;
 
 Game::Game(const Game& toCopy) noexcept = delete;
 
@@ -52,17 +54,108 @@ Game& Game::operator=(const Game& toCopy) noexcept = delete;
 Game& Game::operator=(Game&& toMove) noexcept = delete;
 
 
-
-int Game::run()
+void printEvent(const SDL_Event * event)
 {
-	if (SDL_Init(c_USED_SDL_SUBSYSTEMS) != 0) {
+	if (event->type == SDL_WINDOWEVENT) {
+		switch (event->window.event) {
+			case SDL_WINDOWEVENT_SHOWN:
+				SDL_Log("Window %d shown", event->window.windowID);
+				break;
+			case SDL_WINDOWEVENT_HIDDEN:
+				SDL_Log("Window %d hidden", event->window.windowID);
+				break;
+			case SDL_WINDOWEVENT_EXPOSED:
+				SDL_Log("Window %d exposed", event->window.windowID);
+				break;
+			case SDL_WINDOWEVENT_MOVED:
+				SDL_Log("Window %d moved to %d,%d",
+						event->window.windowID, event->window.data1,
+						event->window.data2);
+				break;
+			case SDL_WINDOWEVENT_RESIZED:
+				SDL_Log("Window %d resized to %dx%d",
+						event->window.windowID, event->window.data1,
+						event->window.data2);
+				break;
+			case SDL_WINDOWEVENT_MINIMIZED:
+				SDL_Log("Window %d minimized", event->window.windowID);
+				break;
+			case SDL_WINDOWEVENT_MAXIMIZED:
+				SDL_Log("Window %d maximized", event->window.windowID);
+				break;
+			case SDL_WINDOWEVENT_RESTORED:
+				SDL_Log("Window %d restored", event->window.windowID);
+				break;
+			case SDL_WINDOWEVENT_ENTER:
+				SDL_Log("Mouse entered window %d",
+						event->window.windowID);
+				break;
+			case SDL_WINDOWEVENT_LEAVE:
+				SDL_Log("Mouse left window %d", event->window.windowID);
+				break;
+			case SDL_WINDOWEVENT_FOCUS_GAINED:
+				SDL_Log("Window %d gained keyboard focus",
+						event->window.windowID);
+				break;
+			case SDL_WINDOWEVENT_FOCUS_LOST:
+				SDL_Log("Window %d lost keyboard focus",
+						event->window.windowID);
+				break;
+			case SDL_WINDOWEVENT_CLOSE:
+				SDL_Log("Window %d closed", event->window.windowID);
+				break;
+			default:
+				SDL_Log("Window %d got unknown event %d",
+						event->window.windowID, event->window.event);
+				break;
+		}
+	}
+}
+
+void Game::init() {
+	if (SDL_Init(cUSED_SDL_SUBSYSTEMS) != 0)
+	{
 		throw std::runtime_error(SDL_GetError());
 	}
 
-	GameWindow mainWindow;
+	if (TTF_Init() != 0)
+	{
+		throw std::runtime_error(TTF_GetError());
+	}
 
-	SDL_Delay(1000);
+	mainWindow_ = std::make_unique<GameWindow>();
+	mainWindow_->show();
+}
 
+int Game::loop()
+{
+	auto i = 0;
+	auto quit = false;
+	while (!quit)
+	{
+		SDL_Event e;
+		while (SDL_PollEvent(&e))
+		{
+			if (e.type == SDL_QUIT)
+			{
+				std::cout << "Quit called" << std::endl;
+				quit = true;
+			}
+			printEvent(&e);
+		}
+
+
+		mainWindow_->update();
+//		SDL_Delay(10);
+		std::cout << i << '\n';
+		if ((i % 1000) == 0) {
+			std::cout << std::endl;
+		}
+		if (++i == 20000) quit = true;
+	}
+
+
+	std::cout << std::endl;
 	SDL_Quit();
 	return 0;
 }
@@ -72,8 +165,6 @@ int Game::run()
 
 // ====== private: ======
 
-void Game::init() {
 
-}
 
 } // namespace pong

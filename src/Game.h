@@ -22,18 +22,24 @@
 
 #pragma once
 
-#include "graphics/GameWindow.h"
+#include <memory>
 
 namespace pong {
 
-class Game
+
+namespace graphics {
+class GameWindow;
+}
+
+
+class Game final
 {
 public:
 
 	/**
 	* \brief Default constructor.
 	*/
-	Game() noexcept;
+	Game();
 
 	/**
 	* \brief Default copy constructor, deleted
@@ -61,19 +67,19 @@ public:
 	*/
 	Game& operator=(Game&& toMove) noexcept;
 
-
-	/**
-	* \brief Runs the game.
-	*/
-	int run();
-
-
-private:
-
 	/**
 	* \brief initialize the game
 	*/
 	void init();
+
+	/**
+	* \brief Runs the game.
+	*/
+	int loop();
+
+
+private:
+	std::unique_ptr<graphics::GameWindow> mainWindow_;
 
 };
 

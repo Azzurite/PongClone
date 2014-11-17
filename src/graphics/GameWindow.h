@@ -27,7 +27,7 @@
 namespace pong {
 namespace graphics {
 
-class GameWindow
+class GameWindow final
 {
 public:
 
@@ -64,14 +64,16 @@ public:
 	GameWindow& operator=(GameWindow&&) noexcept;
 
 
+	void show();
 
+	void update();
 
 private:
 
+	SDL_Window* mainWindow_ = nullptr;
 
+	SDL_Renderer* renderer_ = nullptr;
 
-	SDL_Window* mainWindow = nullptr;
-	SDL_Renderer* renderer = nullptr;
 };
 
 }} // namespace pong::graphics
