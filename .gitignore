@@ -16,11 +16,6 @@ exportToHtml/
 *.gch
 *.pch
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
 # Fortran module files
 *.mod
 
@@ -63,4 +58,5 @@ CMakeFiles
 Makefile
 cmake_install.cmake
 install_manifest.txt
+
 
