@@ -43,8 +43,8 @@ Texture& Texture::operator=(const Texture&) noexcept = delete;
 
 Texture& Texture::operator=(Texture&&) noexcept = default;
 
-void Texture::render() {
-	SDL_RenderCopy(renderer_, &*texture_, nullptr, nullptr);
+void Texture::render(Renderer& renderer) {
+	renderer.renderTexture(&*texture_, nullptr, nullptr);
 }
 
 // ====== protected: ======

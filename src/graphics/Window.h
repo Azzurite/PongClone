@@ -1,6 +1,6 @@
 /** \file
  *
- * \date 16.11.2014
+ * \date 21.11.2014
  * \author Azzu
  *
  * \copyright GPL v3
@@ -19,19 +19,56 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+ 
+#pragma once
 
-#include "Renderable.h"
+#include <string>
+#include <SDL2/SDL_video.h>
 
 namespace pong {
 namespace graphics {
 
-// ====== public: ======
+class Window
+{
+public:
 
-Renderable::~Renderable() noexcept = default;
+	/**
+	 * \brief Default constructor.
+	 */
+	Window(std::string name);
+	
+	/**
+	 * \brief Default copy constructor.
+	 */
+	Window(const Window&) noexcept;
+		
+	/**
+	 * \brief Default move constructor.
+	 */
+	Window(Window&&) noexcept;
+	
+	/**
+	 * \brief Default destructor.
+	 */
+	~Window() noexcept;
+	
+	
+	/**
+	 * \brief Default copy assignment operator.
+	 */
+	Window& operator=(const Window&) noexcept;
+	
+	/**
+	 * \brief Default move assignment operator.
+	 */
+	Window& operator=(Window&&) noexcept;
+	
 
-// ====== protected: ======
+protected:
 
-// ====== private: ======
+private:
 
+	SDL_Window* window_;
+};
 
 }} // namespace pong::graphics

@@ -31,38 +31,11 @@ class Renderable
 {
 public:
 	/**
-	 * \brief Default constructor.
-	 */
-	Renderable() noexcept;
-
-	/**
-	 * \brief Default copy constructor.
-	 */
-	Renderable(const Renderable &) noexcept;
-
-	/**
-	 * \brief Default move constructor.
-	 */
-	Renderable(Renderable &&) noexcept;
-
-	/**
 	 * \brief Default destructor.
 	 */
-	virtual ~Renderable() noexcept;
-
-	/**
-	 * \brief Default copy assignment operator.
-	 */
-	Renderable &operator=(const Renderable &) noexcept;
-
-	/**
-	 * \brief Default move assignment operator.
-	 */
-	Renderable &operator=(Renderable &&) noexcept;
-
+	virtual ~Renderable() noexcept = 0;
 
 	virtual void render(Renderer&) = 0;
-
 
 protected:
 

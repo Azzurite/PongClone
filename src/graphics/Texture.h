@@ -24,16 +24,16 @@
 
 #include <memory>
 
-struct SDL_Surface;
-struct SDL_Texture;
-struct SDL_Renderer;
+#include "SDL.h"
+
+#include "graphics/Renderable.h"
 
 namespace pong {
 namespace graphics {
 
 class Renderer;
 
-class Texture
+class Texture final : public Renderable
 {
 public:
 
@@ -55,7 +55,7 @@ public:
 	/**
 	 * \brief Default destructor.
 	 */
-	~Texture() noexcept;
+	virtual ~Texture() noexcept;
 	
 	
 	/**
@@ -68,7 +68,7 @@ public:
 	 */
 	Texture& operator=(Texture&&) noexcept;
 
-	virtual void render();
+	virtual void render(Renderer& renderer) override;
 	
 
 protected:
@@ -81,6 +81,10 @@ private:
 	SDL_Renderer* renderer_;
 
 	std::unique_ptr<SDL_Texture, void(*)(SDL_Texture*)> texture_;
+
+	SDL_Rect src;
+
+	SDL_Rect dest;
 
 };
 

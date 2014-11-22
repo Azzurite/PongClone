@@ -1,6 +1,6 @@
 /** \file
  *
- * \date 16.11.2014
+ * \date 18.11.2014
  * \author Azzu
  *
  * \copyright GPL v3
@@ -19,19 +19,58 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+ 
+#pragma once
 
 #include "Renderable.h"
 
 namespace pong {
 namespace graphics {
 
-// ====== public: ======
+class Renderer;
 
-Renderable::~Renderable() noexcept = default;
+class Text final : public Renderable
+{
+public:
 
-// ====== protected: ======
+	/**
+	 * \brief Default constructor.
+	 */
+	Text() noexcept;
+	
+	/**
+	 * \brief Default copy constructor.
+	 */
+	Text(const Text&) noexcept;
+		
+	/**
+	 * \brief Default move constructor.
+	 */
+	Text(Text&&) noexcept;
+	
+	/**
+	 * \brief Default destructor.
+	 */
+	virtual ~Text() noexcept;
+	
+	
+	/**
+	 * \brief Default copy assignment operator.
+	 */
+	Text& operator=(const Text&) noexcept;
+	
+	/**
+	 * \brief Default move assignment operator.
+	 */
+	Text& operator=(Text&&) noexcept;
 
-// ====== private: ======
+	virtual void render(Renderer& renderer) override;
+	
 
+protected:
+
+private:
+
+};
 
 }} // namespace pong::graphics

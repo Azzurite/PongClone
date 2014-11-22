@@ -25,7 +25,7 @@
 namespace pong {
 namespace graphics {
 
-class Surface
+class Surface final
 {
 public:
 

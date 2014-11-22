@@ -1,6 +1,6 @@
 /** \file
  *
- * \date 16.11.2014
+ * \date 19.11.2014
  * \author Azzu
  *
  * \copyright GPL v3
@@ -20,18 +20,32 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Renderable.h"
+#include "graphics/Color.h"
 
 namespace pong {
 namespace graphics {
 
+
 // ====== public: ======
 
-Renderable::~Renderable() noexcept = default;
+Color::Color() noexcept : Color(0, 0, 0) {}
+
+Color::Color(Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha) noexcept : color_{red, green, blue, alpha} {}
+
+Color::Color(const Color&) noexcept = default;
+
+Color::Color(Color&&) noexcept = default;
+
+Color::~Color() noexcept = default;
+
+Color& Color::operator=(const Color&) noexcept = default;
+
+Color& Color::operator=(Color&&) noexcept = default;
 
 // ====== protected: ======
 
 // ====== private: ======
+
 
 
 }} // namespace pong::graphics

@@ -22,24 +22,16 @@
  
 #pragma once
 
-struct SDL_Window;
-struct SDL_Renderer;
-
-class SDL_Texture;
-class SDL_Surface;
+#include "SDL.h"
 
 namespace pong {
 namespace graphics {
 
 class Texture;
 
-class Renderer
+class Renderer final
 {
 public:
-	/**
-	 * \brief Default constructor.
-	 */
-	Renderer() noexcept;
 
 	/**
 	 * \brief Default copy constructor.
@@ -77,6 +69,10 @@ public:
 	 * \return the window associated with the renderer
 	 */
 	SDL_Window* getWindow() const { return renderWindow_; }
+
+	void renderRectangle(SDL_Rect* rectangle);
+
+	void renderTexture(SDL_Texture* texture, const SDL_Rect* const src, const SDL_Rect* const dest);
 
 protected:
 

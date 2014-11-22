@@ -1,6 +1,6 @@
 /** \file
  *
- * \date 16.11.2014
+ * \date 19.11.2014
  * \author Azzu
  *
  * \copyright GPL v3
@@ -19,46 +19,65 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
-#include "graphics/Renderer.h"
+ 
+#pragma once
 
 #include "SDL.h"
-#include "Texture.h"
 
 namespace pong {
 namespace graphics {
 
-// ====== public: ======
-
-
-Renderer::Renderer(const Renderer&) noexcept = delete;
-
-Renderer::Renderer(Renderer&&) noexcept = default;
-
-Renderer::~Renderer() noexcept = default;
-
-Renderer& Renderer::operator=(const Renderer&) noexcept = delete;
-
-Renderer& Renderer::operator=(Renderer&&) noexcept = default;
-
-Texture Renderer::createTexture(SDL_Surface *surface) const
+class Color final
 {
-	return Texture(renderer_, surface);
-}
+public:
 
-void Renderer::renderRectangle(SDL_Rect* rectangle)
-{
-	SDL_RenderDrawRect(renderer_, rectangle);
-}
+	/**
+	 * \brief Pure black.
+	 */
+	Color() noexcept;
 
-void Renderer::renderTexture(SDL_Texture* texture, const SDL_Rect* const src, const SDL_Rect* const dest)
-{
-	SDL_RenderCopy(renderer_, texture, src, dest);
-}
+	/**
+	 * \brief Creates the specified color
+	 * \param red 0-255
+	 * \param green 0-255
+	 * \param blue 0-255
+	 * \param alpha 0-255, 0 = transparent, 255 = solid
+	 */
+	Color(Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha = 255) noexcept;
 
-// ====== protected: ======
+	/**
+	 * \brief Default copy constructor.
+	 */
+	Color(const Color&) noexcept;
+		
+	/**
+	 * \brief Default move constructor.
+	 */
+	Color(Color&&) noexcept;
+	
+	/**
+	 * \brief Default destructor.
+	 */
+	~Color() noexcept;
+	
+	
+	/**
+	 * \brief Default copy assignment operator.
+	 */
+	Color& operator=(const Color&) noexcept;
+	
+	/**
+	 * \brief Default move assignment operator.
+	 */
+	Color& operator=(Color&&) noexcept;
+	
 
-// ====== private: ======
+protected:
 
+private:
+
+	SDL_Color color_;
+
+};
 
 }} // namespace pong::graphics

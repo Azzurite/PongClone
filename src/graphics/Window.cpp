@@ -1,6 +1,6 @@
 /** \file
  *
- * \date 16.11.2014
+ * \date 21.11.2014
  * \author Azzu
  *
  * \copyright GPL v3
@@ -20,14 +20,34 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Renderable.h"
+#include "graphics/Window.h"
+
+#include <stdexcept>
+
+#include "SDL.h"
 
 namespace pong {
 namespace graphics {
 
 // ====== public: ======
 
-Renderable::~Renderable() noexcept = default;
+Window::Window(std::string name)
+{
+	window_ = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 0, 0, SDL_WINDOW_HIDDEN | SDL_WINDOW_FULLSCREEN_DESKTOP);
+	if (window_ == nullptr) {
+		throw std::runtime_error(std::string("Window could not be created: ") + SDL_GetError());
+	}
+}
+
+Window::Window(const Window&) noexcept = default;
+
+Window::Window(Window&&) noexcept = default;
+
+Window::~Window() noexcept = default;
+
+Window& Window::operator=(const Window&) noexcept = default;
+
+Window& Window::operator=(Window&&) noexcept = default;
 
 // ====== protected: ======
 
