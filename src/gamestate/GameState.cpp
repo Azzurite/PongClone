@@ -1,4 +1,4 @@
-/** \file
+/** @file
  *
  * \date 16.11.2014
  * \author Azzu
@@ -24,6 +24,7 @@
 
 #include <stdexcept>
 #include <string>
+#include <memory>
 
 #include "SDL.h"
 
@@ -57,10 +58,11 @@ void GameState::pause()
 
 void GameState::resume()
 {
+	cachedRender_.reset(nullptr);
 	isPaused_ = false;
 }
 
-void GameState::render(Renderer& r)
+void GameState::render(const Renderer& r) const
 {
 	if (isPaused_) renderPaused(r);
 	else renderImpl(r);
@@ -69,22 +71,24 @@ void GameState::render(Renderer& r)
 
 // ====== protected: ======
 
-void GameState::renderPaused(Renderer& r)
+
+void GameState::renderPaused(const Renderer& r) const
 {
 	if (!cachedRender_)
 	{
-		renderImpl(r);
-		SDL_Window* w = r.getWindow();
-		SDL_Surface* windowSurface = SDL_GetWindowSurface(w);
-		SDL_Surface* cacheSurface = SDL_ConvertSurface(windowSurface, windowSurface->format, 0);
-		if (cacheSurface == nullptr)
-		{
-			throw std::runtime_error(std::string("Could not copy surface: ") + SDL_GetError());
-		}
-		Texture t = r.createTexture(cacheSurface);
-		cachedRender_ = std::make_unique<Texture>(std::move(t));
+		// TODO impl
+//		renderImpl(r);
+//		SDL_Window* w = r.getWindow();
+//		SDL_Surface* windowSurface = SDL_GetWindowSurface(w);
+//		SDL_Surface* cacheSurface = SDL_ConvertSurface(windowSurface, windowSurface->format, 0);
+//		if (cacheSurface == nullptr)
+//		{
+//			throw std::runtime_error(std::string("Could not copy surface: ") + SDL_GetError());
+//		}
+//		Texture t = r.createTexture(cacheSurface);
+//		cachedRender_ = std::make_unique<Texture>(std::move(t));
 	} else {
-		cachedRender_->render();
+		cachedRender_->render(r);
 	}
 }
 

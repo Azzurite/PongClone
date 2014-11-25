@@ -1,4 +1,4 @@
-/** \file
+/** @file
  *
  * \date 16.11.2014
  * \author Azzu
@@ -26,7 +26,10 @@
 #include <string>
 
 #include "SDL.h"
+
 #include "graphics/Renderer.h"
+#include "util/Exceptions.h"
+#include "Surface.h"
 
 namespace pong {
 namespace graphics {
@@ -43,23 +46,23 @@ Texture& Texture::operator=(const Texture&) noexcept = delete;
 
 Texture& Texture::operator=(Texture&&) noexcept = default;
 
-void Texture::render(Renderer& renderer) {
-	renderer.renderTexture(&*texture_, nullptr, nullptr);
+void Texture::render(const Renderer& renderer) const {
+	renderer.render(texture_.get(), nullptr, nullptr);
 }
 
 // ====== protected: ======
 
 // ====== private: ======
 
-Texture::Texture(SDL_Renderer* renderer, SDL_Surface* surface) : renderer_(renderer), texture_(nullptr, SDL_DestroyTexture)
+Texture::Texture(SDLTextureUPtr&& texture) : texture_(std::move(texture))
 {
-	SDL_Texture* t = SDL_CreateTextureFromSurface(renderer, surface);
-	if (t == nullptr)
-	{
-		throw std::runtime_error(std::string("Failed to create texture from surface: ") + SDL_GetError());
-	}
+}
 
-	texture_ = std::unique_ptr<SDL_Texture, void(*)(SDL_Texture*)>(t, SDL_DestroyTexture);
+// ====== freestanding: ======
+
+Texture::SDLTextureUPtr make_unique_texture(SDL_Texture* texture)
+{
+	return Texture::SDLTextureUPtr(texture, SDL_DestroyTexture);
 }
 
 }} // namespace pong::graphics

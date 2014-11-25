@@ -1,4 +1,4 @@
-/** \file
+/** @file
  *
  * \date 16.11.2014
  * \author Azzu
@@ -22,22 +22,37 @@
 
 #include "graphics/Surface.h"
 
+#include <string>
+
+#include "SDL.h"
+
+#include "graphics/Texture.h"
+#include "util/Exceptions.h"
+
 namespace pong {
 namespace graphics {
 
 // ====== public: ======
 
-Surface::Surface() noexcept = default;
+Surface::Surface(std::string fileName) noexcept : surface_(SDL_LoadBMP(fileName.c_str()), SDL_FreeSurface)
+{
+	if (!surface_) {
+		throw util::sdlError("Could not load BMP to Surface.");
+	}
+}
 
-Surface::Surface(const Surface&) noexcept = default;
+Surface::Surface(const Surface&) noexcept = delete;
 
 Surface::Surface(Surface&&) noexcept = default;
 
 Surface::~Surface() noexcept = default;
 
-Surface& Surface::operator=(const Surface&) noexcept = default;
+Surface& Surface::operator=(const Surface&) noexcept = delete;
 
 Surface& Surface::operator=(Surface&&) noexcept = default;
+
+
+
 
 // ====== protected: ======
 

@@ -1,4 +1,4 @@
-/** \file
+/** @file
  *
  * \date 19.11.2014
  * \author Azzu
@@ -28,16 +28,6 @@ namespace graphics {
 
 // ====== public: ======
 
-Color::Color() noexcept : Color(0, 0, 0) {}
-
-Color::Color(Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha) noexcept : color_{red, green, blue, alpha} {}
-
-Color::Color(const Color&) noexcept = default;
-
-Color::Color(Color&&) noexcept = default;
-
-Color::~Color() noexcept = default;
-
 Color& Color::operator=(const Color&) noexcept = default;
 
 Color& Color::operator=(Color&&) noexcept = default;
@@ -46,6 +36,9 @@ Color& Color::operator=(Color&&) noexcept = default;
 
 // ====== private: ======
 
+
+
+// ====== freestanding: ======
 
 
 }} // namespace pong::graphics

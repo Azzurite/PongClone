@@ -1,4 +1,4 @@
-/** \file
+/** @file
  *
  * \date 16.11.2014
  * \author Azzu
@@ -19,7 +19,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 #pragma once
 
 #include <memory>
@@ -37,38 +37,38 @@ namespace pong {
 namespace gamestate {
 
 
-class GameState : private pong::graphics::Renderable
+class GameState : public pong::graphics::Renderable
 {
 public:
 
 	/**
-	 * \brief Default constructor.
+	 * @brief Default constructor.
 	 */
 	GameState() noexcept;
-	
+
 	/**
-	 * \brief Default copy constructor.
+	 * @brief Default copy constructor.
 	 */
 	GameState(const GameState&) noexcept;
-		
+
 	/**
-	 * \brief Default move constructor.
+	 * @brief Default move constructor.
 	 */
 	GameState(GameState&&) noexcept;
-	
+
 	/**
-	 * \brief Default destructor.
+	 * @brief Default destructor.
 	 */
 	~GameState() noexcept;
-	
-	
+
+
 	/**
-	 * \brief Default copy assignment operator.
+	 * @brief Default copy assignment operator.
 	 */
 	GameState& operator=(const GameState&) noexcept;
-	
-	/**
-	 * \brief Default move assignment operator.
+
+	/*!
+	 * @brief Default move assignment operator.
 	 */
 	GameState& operator=(GameState&&) noexcept;
 
@@ -77,19 +77,19 @@ public:
 
 	void resume();
 
-	void render(pong::graphics::Renderer&) override;
+	void render(const pong::graphics::Renderer&) const override;
 
 protected:
 
-	void renderPaused(pong::graphics::Renderer&);
+	void renderPaused(const pong::graphics::Renderer&) const;
 
-	virtual void renderImpl(pong::graphics::Renderer&) = 0;
+	virtual void renderImpl(const pong::graphics::Renderer&) const = 0;
 
 private:
 
 	bool isPaused_ = false;
 
-	std::unique_ptr<pong::graphics::Texture> cachedRender_;
+	mutable std::unique_ptr<pong::graphics::Texture> cachedRender_;
 
 };
 

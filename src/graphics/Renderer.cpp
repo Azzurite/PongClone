@@ -1,4 +1,4 @@
-/** \file
+/** @file
  *
  * \date 16.11.2014
  * \author Azzu
@@ -22,8 +22,15 @@
 
 #include "graphics/Renderer.h"
 
+#include <memory>
+
 #include "SDL.h"
-#include "Texture.h"
+
+#include "graphics/Dimension.h"
+#include "graphics/Surface.h"
+#include "graphics/Texture.h"
+#include "graphics/Rect.h"
+#include "util/Exceptions.h"
 
 namespace pong {
 namespace graphics {
@@ -41,24 +48,63 @@ Renderer& Renderer::operator=(const Renderer&) noexcept = delete;
 
 Renderer& Renderer::operator=(Renderer&&) noexcept = default;
 
-Texture Renderer::createTexture(SDL_Surface *surface) const
+Texture Renderer::createTexture(const Surface& surface) const
 {
-	return Texture(renderer_, surface);
+	auto sdlSurface = (static_cast<SDL_Surface&>(surface));
+	auto texture = make_unique_texture(SDL_CreateTextureFromSurface(renderer_.get(), &sdlSurface));
+	if (!texture)
+	{
+		throw util::sdlError("Failed to create texture from surface.");
+	}
+
+	return Texture(std::move(texture));
 }
 
-void Renderer::renderRectangle(SDL_Rect* rectangle)
+void Renderer::renderPresent() const
 {
-	SDL_RenderDrawRect(renderer_, rectangle);
+	SDL_RenderPresent(renderer_.get());
+	SDL_SetRenderDrawColor(renderer_.get(), 0, 0, 0, 255);
+	SDL_RenderClear(renderer_.get());
 }
 
-void Renderer::renderTexture(SDL_Texture* texture, const SDL_Rect* const src, const SDL_Rect* const dest)
+void Renderer::render(const Rect& rectangle) const
 {
-	SDL_RenderCopy(renderer_, texture, src, dest);
+	setRenderColor(rectangle.color());
+	const SDL_Rect r = static_cast<SDL_Rect>(rectangle);
+	SDL_RenderDrawRect(renderer_.get(), &r);
+}
+
+void Renderer::render(SDL_Texture* texture, const SDL_Rect* const src, const SDL_Rect* const dest) const
+{
+	SDL_RenderCopy(renderer_.get(), texture, src, dest);
+}
+
+void Renderer::setLogicalSize(Dimension dim)
+{
+	SDL_RenderSetLogicalSize(renderer_.get(), dim.width(), dim.height());
+}
+
+Dimension Renderer::getLogicalSize()
+{
+	int width;
+	int height;
+	SDL_RenderGetLogicalSize(renderer_.get(), &width, &height);
+	return {width, height};
 }
 
 // ====== protected: ======
 
 // ====== private: ======
+
+Renderer::Renderer(SDLRendererUPtr&& renderer) : renderer_(std::move(renderer))
+{
+}
+
+
+void Renderer::setRenderColor(const Color& color) const
+{
+	SDL_SetRenderDrawColor(renderer_.get(), color.red(), color.green(), color.blue(), color.alpha());
+}
 
 
 }} // namespace pong::graphics

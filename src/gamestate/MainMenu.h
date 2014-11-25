@@ -1,4 +1,4 @@
-/** \file
+/** @file
 *
 * \date 16.11.2014
 * \author Azzu
@@ -28,41 +28,42 @@ namespace pong {
 namespace gamestate {
 
 
-class MainMenu : private GameState
+class MainMenu : public GameState
 {
 public:
 	/**
-	* \brief Default constructor.
+	* @brief Default constructor.
 	*/
 	MainMenu() noexcept;
 
 	/**
-	* \brief Default copy constructor.
+	* @brief Default copy constructor.
 	*/
 	MainMenu(const MainMenu&) noexcept;
 
 	/**
-	* \brief Default move constructor.
+	* @brief Default move constructor.
 	*/
 	MainMenu(MainMenu&&) noexcept;
 
 	/**
-	* \brief Default destructor.
+	* @brief Default destructor.
 	*/
 	virtual ~MainMenu() noexcept;
 
 	/**
-	* \brief Default copy assignment operator.
+	* @brief Default copy assignment operator.
 	*/
 	MainMenu&operator=(const MainMenu&) noexcept;
 
 	/**
-	* \brief Default move assignment operator.
+	* @brief Default move assignment operator.
 	*/
 	MainMenu&operator=(MainMenu&&) noexcept;
 
-
 protected:
+
+	virtual void renderImpl(const pong::graphics::Renderer&) const override;
 
 private:
 

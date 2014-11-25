@@ -1,4 +1,4 @@
-/** \file
+/** @file
  *
  * \date 19.02.2014
  * \author Azzu
@@ -24,6 +24,8 @@
 
 #include <memory>
 
+#include "SDL.h"
+
 namespace pong {
 
 
@@ -37,44 +39,39 @@ class Game final
 public:
 
 	/**
-	* \brief Default constructor.
-	*/
+	 * @brief Default constructor.
+	 */
 	Game();
 
 	/**
-	* \brief Default copy constructor, deleted
-	*/
+	 * @brief Default copy constructor, deleted
+	 */
 	Game(const Game& toCopy) noexcept;
 
 	/**
-	* \brief Default move constructor, deleted
-	*/
+	 * @brief Default move constructor, deleted
+	 */
 	Game(Game&& toMove) noexcept;
 
 	/**
-	* \brief Default destructor.
-	*/
+	 * @brief Default destructor.
+	 */
 	~Game() noexcept;
 
 
 	/**
-	* \brief Default copy assignment operator, deleted
-	*/
+	 * @brief Default copy assignment operator, deleted
+	 */
 	Game& operator=(const Game& toCopy) noexcept;
 
 	/**
-	* \brief Default move assignment operator, deleted
-	*/
+	 * @brief Default move assignment operator, deleted
+	 */
 	Game& operator=(Game&& toMove) noexcept;
 
 	/**
-	* \brief initialize the game
-	*/
-	void init();
-
-	/**
-	* \brief Runs the game.
-	*/
+	 * @brief Runs the game.
+	 */
 	int loop();
 
 
@@ -82,5 +79,7 @@ private:
 	std::unique_ptr<graphics::GameWindow> mainWindow_;
 
 };
+
+constexpr Uint32 cUSED_SDL_SUBSYSTEMS = SDL_INIT_VIDEO | SDL_INIT_AUDIO;
 
 } // namespace pong

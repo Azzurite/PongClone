@@ -1,4 +1,4 @@
-/** \file
+/** @file
  *
  * \date 16.11.2014
  * \author Azzu
@@ -27,7 +27,7 @@ namespace graphics {
 
 // ====== public: ======
 
-Renderable::~Renderable() noexcept = default;
+//Renderable::~Renderable() noexcept = default;
 
 // ====== protected: ======
 

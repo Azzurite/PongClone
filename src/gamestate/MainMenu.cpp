@@ -1,4 +1,4 @@
-/** \file
+/** @file
  *
  * \date 16.11.2014
  * \author Azzu
@@ -22,6 +22,14 @@
 
 #include "gamestate/MainMenu.h"
 
+#include "graphics/Color.h"
+#include "graphics/Renderer.h"
+#include "graphics/RenderRect.h"
+
+using pong::graphics::Renderer;
+using pong::graphics::Color;
+using pong::graphics::RenderRect;
+
 namespace pong {
 namespace gamestate {
 
@@ -40,6 +48,13 @@ MainMenu &MainMenu::operator=(const MainMenu &) noexcept = delete;
 MainMenu &MainMenu::operator=(MainMenu &&) noexcept = default;
 
 // ====== protected: ======
+
+void MainMenu::renderImpl(const Renderer& renderer) const
+{
+	auto r = RenderRect({{100, 100}, {200, 200}, {255, 255, 255}});
+
+	r.render(renderer);
+}
 
 // ====== private: ======
 

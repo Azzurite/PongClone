@@ -1,4 +1,4 @@
-/** \file
+/** @file
  *
  * \date 16.11.2014
  * \author Azzu
@@ -19,68 +19,82 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 #pragma once
 
 #include "SDL.h"
 
+#include <memory>
+
+#include "Dimension.h"
+
 namespace pong {
 namespace graphics {
 
+class Color;
+class Rect;
+class Surface;
 class Texture;
+class Window;
 
 class Renderer final
 {
 public:
 
+	using SDLRendererUPtr = std::unique_ptr<SDL_Renderer, decltype(&SDL_DestroyRenderer)>;
+
 	/**
-	 * \brief Default copy constructor.
+	 * @brief Default copy constructor.
 	 */
 	Renderer(const Renderer&) noexcept;
 
 	/**
-	 * \brief Default move constructor.
+	 * @brief Default move constructor.
 	 */
 	Renderer(Renderer&&) noexcept;
 
 	/**
-	 * \brief Default destructor.
+	 * @brief Default destructor.
 	 */
 	~Renderer() noexcept;
 
 	/**
-	 * \brief Default copy assignment operator.
+	 * @brief Default copy assignment operator.
 	 */
 	Renderer& operator=(const Renderer&) noexcept;
 
 	/**
-	 * \brief Default move assignment operator.
+	 * @brief Default move assignment operator.
 	 */
 	Renderer& operator=(Renderer&&) noexcept;
 
 
 	/**
-	 * \brief Creates a texture from a Surface
-	 * \return the created texture
+	 * @brief Creates a texture from a surface
+	 * @return the created texture
 	 */
-	Texture createTexture(SDL_Surface*) const;
+	Texture createTexture(const Surface& surface) const;
 
-	/**
-	 * \return the window associated with the renderer
-	 */
-	SDL_Window* getWindow() const { return renderWindow_; }
+	void renderPresent() const;
 
-	void renderRectangle(SDL_Rect* rectangle);
+	void render(const Rect& rectangle) const;
 
-	void renderTexture(SDL_Texture* texture, const SDL_Rect* const src, const SDL_Rect* const dest);
+	void render(SDL_Texture* texture, const SDL_Rect* const src, const SDL_Rect* const dest) const;
+
+	void setLogicalSize(Dimension dim);
+
+	Dimension getLogicalSize();
 
 protected:
 
 private:
+	friend class Window;
 
-	SDL_Window* renderWindow_;
+	Renderer(SDLRendererUPtr&& renderer);
 
-	SDL_Renderer* renderer_;
+	void setRenderColor(const Color& color) const;
+
+	SDLRendererUPtr renderer_;
 
 };
 

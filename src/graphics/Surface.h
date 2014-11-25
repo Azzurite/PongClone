@@ -1,4 +1,4 @@
-/** \file
+/** @file
  *
  * \date 16.11.2014
  * \author Azzu
@@ -22,6 +22,11 @@
  
 #pragma once
 
+#include <memory>
+#include <string>
+
+#include "SDL.h"
+
 namespace pong {
 namespace graphics {
 
@@ -29,41 +34,51 @@ class Surface final
 {
 public:
 
+	using SDLSurfaceUPtr = std::unique_ptr<SDL_Surface, decltype(&SDL_FreeSurface)>;
+
 	/**
-	 * \brief Default constructor.
+	 * @brief Default constructor.
 	 */
-	Surface() noexcept;
+	Surface(std::string fileName) noexcept;
 	
 	/**
-	 * \brief Default copy constructor.
+	 * @brief Default copy constructor.
 	 */
 	Surface(const Surface&) noexcept;
 		
 	/**
-	 * \brief Default move constructor.
+	 * @brief Default move constructor.
 	 */
 	Surface(Surface&&) noexcept;
 	
 	/**
-	 * \brief Default destructor.
+	 * @brief Default destructor.
 	 */
 	~Surface() noexcept;
 	
 	
 	/**
-	 * \brief Default copy assignment operator.
+	 * @brief Default copy assignment operator.
 	 */
 	Surface& operator=(const Surface&) noexcept;
 	
 	/**
-	 * \brief Default move assignment operator.
+	 * @brief Default move assignment operator.
 	 */
 	Surface& operator=(Surface&&) noexcept;
-	
+
+	operator SDL_Surface&() { return *surface_; }
+
+	operator SDL_Surface&() const { return *surface_; }
+
+
+
 
 protected:
 
 private:
+
+	SDLSurfaceUPtr surface_;
 
 };
 

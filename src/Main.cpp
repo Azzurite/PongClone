@@ -1,4 +1,4 @@
-/** \file
+/** @file
  *
  * \date 27.01.2014
  * \author Azzu
@@ -27,7 +27,6 @@
 
 int main(int argc, char* argv[])
 {
-	pong::Game game;
-	game.init();
+	auto game = pong::Game{};
 	return game.loop();
 }

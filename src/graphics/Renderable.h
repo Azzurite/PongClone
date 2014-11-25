@@ -1,4 +1,4 @@
-/** \file
+/** @file
  *
  * \date 16.11.2014
  * \author Azzu
@@ -19,7 +19,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 #pragma once
 
 namespace pong {
@@ -31,15 +31,11 @@ class Renderable
 {
 public:
 	/**
-	 * \brief Default destructor.
+	 * @brief Default destructor.
 	 */
-	virtual ~Renderable() noexcept = 0;
+//	virtual ~Renderable() noexcept = 0;
 
-	virtual void render(Renderer&) = 0;
-
-protected:
-
-private:
+	virtual void render(const Renderer&) const = 0;
 
 };
 

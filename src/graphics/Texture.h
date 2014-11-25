@@ -1,4 +1,4 @@
-/** \file
+/** @file
  *
  * \date 16.11.2014
  * \author Azzu
@@ -19,7 +19,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 #pragma once
 
 #include <memory>
@@ -32,60 +32,59 @@ namespace pong {
 namespace graphics {
 
 class Renderer;
+class Surface;
 
 class Texture final : public Renderable
 {
 public:
+	using SDLTextureUPtr = std::unique_ptr<SDL_Texture, decltype(&SDL_DestroyTexture)>;
 
 	/**
-	 * \brief Default copy constructor.
+	 * @brief Default copy constructor.
 	 */
 	Texture(const Texture&) noexcept;
-		
+
 	/**
-	 * \brief Default move constructor.
+	 * @brief Default move constructor.
 	 */
 	Texture(Texture&&) noexcept;
 
+
+
 	/**
-	 * \brief creates a texture from a surface
-	 */
-	Texture(SDL_Surface*);
-	
-	/**
-	 * \brief Default destructor.
+	 * @brief Default destructor.
 	 */
 	virtual ~Texture() noexcept;
-	
-	
+
+
 	/**
-	 * \brief Default copy assignment operator.
+	 * @brief Default copy assignment operator.
 	 */
 	Texture& operator=(const Texture&) noexcept;
-	
+
 	/**
-	 * \brief Default move assignment operator.
+	 * @brief Default move assignment operator.
 	 */
 	Texture& operator=(Texture&&) noexcept;
 
-	virtual void render(Renderer& renderer) override;
-	
+	virtual void render(const Renderer& renderer) const override;
+
 
 protected:
 
 private:
 	friend class Renderer;
 
-	Texture(SDL_Renderer*, SDL_Surface*);
+	Texture(SDLTextureUPtr&& texture);
 
-	SDL_Renderer* renderer_;
-
-	std::unique_ptr<SDL_Texture, void(*)(SDL_Texture*)> texture_;
+	SDLTextureUPtr texture_;
 
 	SDL_Rect src;
 
 	SDL_Rect dest;
 
 };
+
+Texture::SDLTextureUPtr make_unique_texture(SDL_Texture* texture);
 
 }} // namespace pong::graphics

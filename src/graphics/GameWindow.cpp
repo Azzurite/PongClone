@@ -1,4 +1,4 @@
-/** \file
+/** @file
  *
  * \date 19.02.2014
  * \author Azzu
@@ -24,10 +24,19 @@
 
 #include <string>
 #include <sstream>
-#include <stdexcept>
+
 #include "SDL.h"
 #include "SDL_image.h"
 #include "SDL_ttf.h"
+
+#include "gamestate/StateStack.h"
+#include "gamestate/GameState.h"
+#include "gamestate/MainMenu.h"
+#include "util/Strings.h"
+#include "util/Exceptions.h"
+
+using pong::gamestate::GameState;
+using pong::gamestate::MainMenu;
 
 namespace pong {
 namespace graphics {
@@ -36,87 +45,32 @@ namespace {
 	const char* const cPONG_WINDOW_NAME = "Pong";
 }
 
-std::string renderInfoString(SDL_Renderer* renderer)
-{
-	SDL_RendererInfo info;
-	SDL_GetRendererInfo(renderer, &info);
-
-	std::stringstream result;
-	result << info.name << " flags: ";
-
-	if (info.flags & SDL_RENDERER_SOFTWARE)
-	{
-		result << "SDL_RENDERER_SOFTWARE ";
-	}
-	if (info.flags & SDL_RENDERER_ACCELERATED)
-	{
-		result << "SDL_RENDERER_ACCELERATED ";
-	}
-	if (info.flags & SDL_RENDERER_PRESENTVSYNC)
-	{
-		result << "SDL_RENDERER_PRESENTVSYNC ";
-	}
-	if (info.flags & SDL_RENDERER_TARGETTEXTURE)
-	{
-		result << "SDL_RENDERER_TARGETTEXTURE ";
-	}
-
-	return result.str();
-}
 
 // ====== public: ======
 
-GameWindow::GameWindow()
+GameWindow::GameWindow() : mainWindow_(cPONG_WINDOW_NAME), renderer_(mainWindow_.createRenderer(false))
 {
-	mainWindow_ = SDL_CreateWindow(cPONG_WINDOW_NAME, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 0, 0, SDL_WINDOW_HIDDEN | SDL_WINDOW_FULLSCREEN_DESKTOP);
-	if (mainWindow_ == nullptr) {
-		throw std::runtime_error(std::string("Window could not be created: ") + SDL_GetError());
-	}
+	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "best");
+	renderer_.setLogicalSize({cRENDER_WIDTH, cRENDER_HEIGHT});
 
-	renderer_ = SDL_CreateRenderer(mainWindow_, -1, 0);
-	if (renderer_ == nullptr) {
-		throw std::runtime_error(std::string("Renderer could not be created: ") + SDL_GetError());
-	}
-
-	SDL_ShowSimpleMessageBox(0, "Info", renderInfoString(renderer_).c_str(), nullptr);
+	stateStack_.push(std::make_unique<MainMenu>());
 }
 
-GameWindow::GameWindow(const GameWindow&) noexcept = default;
+GameWindow::GameWindow(const GameWindow&) noexcept = delete;
 
-GameWindow::GameWindow(GameWindow&&) noexcept = default;
+GameWindow::GameWindow(GameWindow&&) = default;
 
-GameWindow::~GameWindow() noexcept
-{
-	SDL_DestroyRenderer(renderer_);
+GameWindow::~GameWindow() noexcept = default;
 
-	SDL_DestroyWindow(mainWindow_);
-}
+GameWindow& GameWindow::operator=(const GameWindow&) noexcept = delete;
 
-
-GameWindow& GameWindow::operator=(const GameWindow&) noexcept = default;
-
-GameWindow& GameWindow::operator=(GameWindow&&) noexcept = default;
+GameWindow& GameWindow::operator=(GameWindow&&) = default;
 
 
-void GameWindow::show()
-{
-	SDL_ShowWindow(mainWindow_);
-}
-
-namespace {
-
-auto x = 0;
-auto y = 0;
-
-}
 void GameWindow::update() {
+	stateStack_.render(renderer_);
 
-	SDL_SetRenderDrawColor(renderer_, 0, 0, 0, 255);
-	SDL_RenderClear(renderer_);
-
-
-
-	SDL_RenderPresent(renderer_);
+	renderer_.renderPresent();
 }
 
 // ====== protected: ======

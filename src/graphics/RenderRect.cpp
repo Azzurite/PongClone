@@ -1,4 +1,4 @@
-/** \file
+/** @file
  *
  * \date 18.11.2014
  * \author Azzu
@@ -20,42 +20,48 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "graphics/Rectangle.h"
-#include "Renderer.h"
+#include "RenderRect.h"
+
+#include <iostream>
+
+#include "graphics/Renderer.h"
 
 namespace pong {
 namespace graphics {
 
 // ====== public: ======
 
-Rectangle::Rectangle(int x, int y, int w, int h) noexcept : Rectangle(x, y, w, h, Color(), true) {}
+RenderRect::RenderRect(Rect rect) noexcept : rect_(rect) {}
 
-Rectangle::Rectangle(int x, int y, int w, int h, Color color) noexcept : Rectangle(x, y, w, h, color, true) {}
+RenderRect::RenderRect(const RenderRect &) noexcept = default;
 
-Rectangle::Rectangle(int x, int y, int w, int h, bool isFilled) noexcept : Rectangle(x, y, w, h, Color(), isFilled) {}
+RenderRect::RenderRect(RenderRect &&) noexcept = default;
 
-Rectangle::Rectangle(int x, int y, int w, int h, Color color, bool isFilled) noexcept
-		: rectangle_{x, y, w, h}, color_(color), isFilled_(isFilled) {}
+RenderRect::~RenderRect() noexcept = default;
 
-Rectangle::Rectangle(const Rectangle&) noexcept = default;
+RenderRect &RenderRect::operator=(const RenderRect &) noexcept = default;
 
-Rectangle::Rectangle(Rectangle&&) noexcept = default;
+RenderRect &RenderRect::operator=(RenderRect &&) noexcept = default;
 
-Rectangle::~Rectangle() noexcept = default;
-
-Rectangle& Rectangle::operator=(const Rectangle&) noexcept = default;
-
-Rectangle& Rectangle::operator=(Rectangle&&) noexcept = default;
-
-void Rectangle::render(Renderer& renderer) {
-	renderer.renderRectangle(&rectangle_);
+void RenderRect::render(const Renderer& renderer) const {
+	renderer.render(rect_);
 }
 
 // ====== protected: ======
 
 // ====== private: ======
 
+// ====== freestanding: =====
 
+bool operator==(const RenderRect & lhs, const RenderRect & rhs)
+{
+	return static_cast<Rect>(lhs) == static_cast<Rect>(rhs);
+}
+
+bool operator!=(const RenderRect & lhs, const RenderRect & rhs)
+{
+	return !(lhs == rhs);
+}
 
 
 }} // namespace pong::graphics

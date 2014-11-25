@@ -1,40 +1,36 @@
 # Necessary environment variables: QT_PATH, INCLUDE
 cmake_minimum_required(VERSION 2.8.12.1)
-include (add_macros.cmake)
-include (copy_lib.cmake)
 
 set(USER_NAME "Azzu")
 
 ###### Project Settings ######
 set(PROJECT_NAME "Pong_Clone")
-set(QT_PROJECT FALSE)
+set(HAS_RESOURCES TRUE)
 set(SDL2_PROJECT TRUE)
 set(SDL2_TTF_PROJECT TRUE)
 set(SDL2_IMAGE_PROJECT TRUE)
-set(BOOST_PROJECT FALSE)
+set(BOOST_PROJECT TRUE)
 set(BOOST_COMPONENTS system chrono date_time thread)
+include(user_defined_settings.cmake)
 
 ###### Project Setup ######
-if (${QT_PROJECT}) 
-	set(CMAKE_PREFIX_PATH $ENV{QT_PATH})
-endif()
+###### Include build macros ######
+include (add_macros.cmake)
+include (copy_lib.cmake)
+include (copy_resources.cmake)
+#include (sdl_buildsteps.cmake)
+
+
+
 
 ###### PROJECT START ######
 project(${PROJECT_NAME})
 include_directories($ENV{INCLUDE})
 
-if (${QT_PROJECT}) 
-	set(CMAKE_AUTOMOC ON)
-	set(CMAKE_INCLUDE_CURRENT_DIR ON)
-endif()
-
 ###### Compiler flags ######
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -Wall -pedantic -Wextra")
 set(CMAKE_CXX_FLAGS_DEBUG "-Og -ggdb -DDEBUG")
 
-if (${QT_PROJECT})
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
-endif()
 
 ###### Find SDL2 lib ######
 if (${SDL2_PROJECT})
@@ -85,19 +81,8 @@ if (${SDL2_IMAGE_PROJECT})
 	list(APPEND DYNAMIC_LIBRARIES SDL2_image.dll libjpeg-9.dll libpng16-16.dll libtiff-5.dll libwebp-4.dll zlib1.dll)
 endif()
 
-###### Find Qt ######
-if (${QT_PROJECT})
-	find_package(Qt5Widgets REQUIRED)
-
-	qt5_wrap_ui(UI_HEADERS ${UI_FILES})
-	list (APPEND SOURCE_FILES ${UI_HEADERS})
-	list (APPEND SOURCE_FILES ${MOC_SRC})
-	message(STATUS "UI Headers:  ${UI_HEADERS}")
-endif()
-
 ###### Find Boost ######
 if (${BOOST_PROJECT})
-	SET(BOOST_ROOT "P:/tools/compilers/MinGW/")
 	find_package(Boost REQUIRED COMPONENTS ${BOOST_COMPONENTS})
 	if (NOT Boost_FOUND)
 		message(SEND_ERROR "Boost not found")
@@ -114,30 +99,24 @@ add_subdirectory("src")
 
 include_directories("src")
 
-add_executable(${PROJECT_NAME} ${SOURCE_FILES})
+add_executable(${PROJECT_NAME} src/Main.cpp ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} ${STATIC_LIBRARIES})
-
-if (${QT_PROJECT})
-	qt5_use_modules(${PROJECT_NAME} Widgets)
-endif()
 
 #logging
 get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
 message(STATUS "src_include_dirs: ${dirs}")
 message(STATUS "linked libraries:  ${STATIC_LIBRARIES}")
 
-
+copy_libs(${PROJECT_NAME} ${DYNAMIC_LIBRARIES})
+copy_resources(${PROJECT_NAME})
 
 ###### UnitTest executable ######
 add_subdirectory("test")
 
-add_executable(${PROJECT_NAME}_tests test/Main.cpp ${SOURCE_FILES} ${TEST_FILES})
-target_link_libraries(${PROJECT_NAME}_tests GTest)
-target_link_libraries(${PROJECT_NAME}_tests GMock)
+set(TEST_PROJECT_NAME ${PROJECT_NAME}_tests)
+add_executable(${TEST_PROJECT_NAME} test/Main.cpp ${SOURCE_FILES} ${TEST_FILES})
+target_link_libraries(${TEST_PROJECT_NAME} GTest)
+target_link_libraries(${TEST_PROJECT_NAME} GMock)
+target_link_libraries(${TEST_PROJECT_NAME} ${STATIC_LIBRARIES})
 
-if (${SDL2_PROJECT})
-	target_link_libraries(${PROJECT_NAME}_tests ${SDL2_LIBRARIES})
-endif()
-
-###### Copy libraries to normal and test target ######
-copy_lib(${DYNAMIC_LIBRARIES})
+copy_libs(${TEST_PROJECT_NAME} ${DYNAMIC_LIBRARIES})
