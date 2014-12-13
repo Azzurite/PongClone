@@ -1,9 +1,9 @@
-/** \file
+/*! @file
  *
- * \date 03.12.2014
- * \author Azzurite
+ * @date 03.12.2014
+ * @author Azzurite
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzurite
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 #include "graphics/Texture.h"
 
 #include "gtest/gtest.h"
@@ -133,19 +133,13 @@ class TextureTest_UsesSDL : public Test
 {
 public:
 
-	TextureTest_UsesSDL() : w("Test"), r(w.createRenderer(false)), s("P:\\data\\test\\momo.bmp")
-	{
-	}
-	virtual void SetUp()
-	{
-	}
+	TextureTest_UsesSDL() : w("Test"), r(w.createRenderer(false)), s("P:\\data\\test\\momo.bmp") { }
 
-	virtual ~TextureTest_UsesSDL()
-	{
-	}
-	virtual void TearDown()
-	{
-	}
+	virtual void SetUp() { }
+
+	virtual ~TextureTest_UsesSDL() { }
+
+	virtual void TearDown() { }
 
 	Window w;
 	Renderer r;
@@ -156,4 +150,5 @@ TEST_F(TextureTest_UsesSDL, Default)
 {
 }
 
-}} // namespace pong::graphics
+} // namespace graphics
+} // namespace pong

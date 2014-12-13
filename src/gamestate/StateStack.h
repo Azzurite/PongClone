@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 19.11.2014
- * \author Azzu
+ * @date 19.11.2014
+ * @author Azzu
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzu
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -29,8 +29,8 @@
 
 namespace pong {
 
-namespace graphics{
-	class Renderer;
+namespace graphics {
+class Renderer;
 }
 
 namespace gamestate {
@@ -41,38 +41,38 @@ class StateStack final : public graphics::Renderable
 {
 public:
 
-	/**
+	/*!
 	 * @brief Default constructor.
 	 */
 	StateStack();
 
-	/**
+	/*!
 	 * @brief Default copy constructor.
 	 */
 	StateStack(const StateStack&) noexcept;
 
-	/**
+	/*!
 	 * @brief Default move constructor.
 	 */
 	StateStack(StateStack&&);
 
-	/**
+	/*!
 	 * @brief Default destructor.
 	 */
 	virtual ~StateStack() noexcept;
 
 
-	/**
+	/*!
 	 * @brief Default copy assignment operator.
 	 */
 	StateStack& operator=(const StateStack&) noexcept;
 
-	/**
+	/*!
 	 * @brief Default move assignment operator.
 	 */
 	StateStack& operator=(StateStack&&);
 
-	/**
+	/*!
 	 * @brief Pushes the given gamestate onto the stack.
 	 *
 	 * Will display the gamestate and put all other gamestates into paused mode.
@@ -81,7 +81,7 @@ public:
 	 */
 	void push(std::unique_ptr<GameState>&& gameState);
 
-	/**
+	/*!
 	 * @brief Pops the current [GameState](@ref GameState) off the stack
 	 */
 	void pop();
@@ -97,4 +97,5 @@ private:
 
 };
 
-}} // namespace pong::gamestate
+} // namespace gamestate
+} // namespace pong

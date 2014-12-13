@@ -1,9 +1,9 @@
-/** \file
+/*! @file
  *
- * \date 30.11.2014
- * \author Azzurite
+ * @date 30.11.2014
+ * @author Azzurite
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzurite
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 #include "graphics/Surface.h"
 
 #include "SDL.h"
@@ -130,23 +130,18 @@ using ::testing::Between;
 class SurfaceTest_UsesSDL : public Test
 {
 public:
-	SurfaceTest_UsesSDL()
-	{
-	}
+	SurfaceTest_UsesSDL() { }
+
 	virtual void SetUp()
 	{
-		if (SDL_Init(SDL_INIT_VIDEO) != 0)
-		{
+		if (SDL_Init(SDL_INIT_VIDEO) != 0) {
 			throw "Error initializing SDL";
 		}
 	}
 
-	virtual ~SurfaceTest_UsesSDL()
-	{
-	}
-	virtual void TearDown()
-	{
-	}
+	virtual ~SurfaceTest_UsesSDL() { }
+
+	virtual void TearDown() { }
 
 };
 
@@ -163,4 +158,5 @@ TEST_F(SurfaceTest_UsesSDL, operatorSDLSurface_ConvertsSuccessfully)
 	ASSERT_EQ(0, SDL_GetSurfaceAlphaMod(&ref, &alpha));
 }
 
-}} // namespace pong::graphics
+} // namespace graphics
+} // namespace pong

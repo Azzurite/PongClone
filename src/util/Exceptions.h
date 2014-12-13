@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 22.11.2014
- * \author Azzu
+ * @date 22.11.2014
+ * @author Azzu
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzu
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -28,11 +28,12 @@
 namespace pong {
 namespace util {
 
-/**
+/*!
  * @brief creates a runtime error and append the current SDL_Error to the message.
  * @param message
  */
 std::runtime_error sdlError(std::string message);
 
-}} // namespace pong::util
+} // namespace util
+} // namespace pong
 

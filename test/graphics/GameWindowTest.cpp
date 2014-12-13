@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 19.02.2014
- * \author Timo
+ * @date 19.02.2014
+ * @author Timo
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  */
 
 #include "graphics/GameWindow.h"
@@ -113,31 +113,34 @@ using ::testing::AtMost;
 using ::testing::Between;
 // endregion
 
-class GameWindowTest_UsesSDL : public Test {
+class GameWindowTest_UsesSDL : public Test
+{
 public:
-    GameWindowTest_UsesSDL() {}
+	GameWindowTest_UsesSDL() { }
 
-    virtual void SetUp()
-    {
-        if (SDL_Init(SDL_INIT_VIDEO) != 0)
-        {
-            throw "Error initializing SDL";
-        }
-    }
+	virtual void SetUp()
+	{
+		if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+			throw "Error initializing SDL";
+		}
+	}
 
-    virtual ~GameWindowTest_UsesSDL() {}
+	virtual ~GameWindowTest_UsesSDL() { }
 
-    virtual void TearDown() {}
+	virtual void TearDown() { }
 
 };
 
-TEST_F(GameWindowTest_UsesSDL, GameWindow) {
-    auto w = GameWindow{};
+TEST_F(GameWindowTest_UsesSDL, GameWindow)
+{
+	auto w = GameWindow{};
 }
 
-TEST_F(GameWindowTest_UsesSDL, Update) {
-    auto w = GameWindow{};
-    w.update();
+TEST_F(GameWindowTest_UsesSDL, Update)
+{
+	auto w = GameWindow{};
+	w.update();
 }
 
-}} // namespace pong::graphics
+} // namespace graphics
+} // namespace pong

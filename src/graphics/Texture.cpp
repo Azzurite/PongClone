@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 16.11.2014
- * \author Azzu
+ * @date 16.11.2014
+ * @author Azzu
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzu
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -46,7 +46,8 @@ Texture& Texture::operator=(const Texture&) noexcept = delete;
 
 Texture& Texture::operator=(Texture&&) noexcept = default;
 
-void Texture::render(const Renderer& renderer) const {
+void Texture::render(const Renderer& renderer) const
+{
 	renderer.render(texture_.get(), nullptr, nullptr);
 }
 
@@ -65,4 +66,5 @@ Texture::SDLTextureUPtr make_unique_texture(SDL_Texture* texture)
 	return Texture::SDLTextureUPtr(texture, SDL_DestroyTexture);
 }
 
-}} // namespace pong::graphics
+} // namespace graphics
+} // namespace pong

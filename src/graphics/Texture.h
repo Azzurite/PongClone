@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 16.11.2014
- * \author Azzu
+ * @date 16.11.2014
+ * @author Azzu
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzu
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -32,6 +32,7 @@ namespace pong {
 namespace graphics {
 
 class Renderer;
+
 class Surface;
 
 class Texture final : public Renderable
@@ -39,30 +40,29 @@ class Texture final : public Renderable
 public:
 	using SDLTextureUPtr = std::unique_ptr<SDL_Texture, decltype(&SDL_DestroyTexture)>;
 
-	/**
+	/*!
 	 * @brief Default copy constructor.
 	 */
 	Texture(const Texture&) noexcept;
 
-	/**
+	/*!
 	 * @brief Default move constructor.
 	 */
 	Texture(Texture&&) noexcept;
 
 
-
-	/**
+	/*!
 	 * @brief Default destructor.
 	 */
 	virtual ~Texture() noexcept;
 
 
-	/**
+	/*!
 	 * @brief Default copy assignment operator.
 	 */
 	Texture& operator=(const Texture&) noexcept;
 
-	/**
+	/*!
 	 * @brief Default move assignment operator.
 	 */
 	Texture& operator=(Texture&&) noexcept;
@@ -87,4 +87,5 @@ private:
 
 Texture::SDLTextureUPtr make_unique_texture(SDL_Texture* texture);
 
-}} // namespace pong::graphics
+} // namespace graphics
+} // namespace pong

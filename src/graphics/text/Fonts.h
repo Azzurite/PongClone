@@ -1,9 +1,9 @@
-/** \file
+/*! @file
  *
- * \date 08.12.2014
- * \author Azzurite
+ * @date 08.12.2014
+ * @author Azzurite
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzurite
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 #pragma once
 
 namespace pong {
@@ -31,37 +31,37 @@ class Fonts
 {
 public:
 
-	/**
+	/*!
 	 * @brief Default constructor.
 	 */
 	constexpr Fonts() noexcept;
-	
-	/**
+
+	/*!
 	 * @brief Default copy constructor.
 	 */
 	constexpr Fonts(const Fonts&) noexcept;
-		
-	/**
+
+	/*!
 	 * @brief Default move constructor.
 	 */
 	constexpr Fonts(Fonts&&) noexcept;
-	
-	/**
+
+	/*!
 	 * @brief Default destructor.
 	 */
 	~Fonts() noexcept;
-	
-	
-	/**
+
+
+	/*!
 	 * @brief Default copy assignment operator.
 	 */
 	Fonts& operator=(const Fonts&) noexcept;
-	
-	/**
+
+	/*!
 	 * @brief Default move assignment operator.
 	 */
 	Fonts& operator=(Fonts&&) noexcept;
-	
+
 
 protected:
 
@@ -69,4 +69,6 @@ private:
 
 };
 
-}}} // namespace pong::graphics::text
+} // namespace text
+} // namespace graphics
+} // namespace pong

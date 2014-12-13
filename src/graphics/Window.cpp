@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 21.11.2014
- * \author Azzu
+ * @date 21.11.2014
+ * @author Azzu
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzu
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -65,7 +65,7 @@ Window::SDLWindowUPtr createWindow(string name, int x, int y, int h, int w, bool
 
 // ====== public: ======
 
-Window::Window(string name) : Window(name, Fullscreen::DESKTOP, State::NORMAL, true) {}
+Window::Window(string name) : Window(name, Fullscreen::DESKTOP, State::NORMAL, true) { }
 
 Window::Window(string name, Fullscreen fullscreen, State state, bool inputGrabbed)
 		: window_(std::move(createWindow(name, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 0, 0, inputGrabbed, fullscreen, state)))
@@ -96,8 +96,7 @@ Window& Window::operator=(Window&&) noexcept = default;
 Renderer Window::createRenderer(bool vSync) const
 {
 	auto* rendererPtr = SDL_CreateRenderer(window_.get(), -1, vSync ? SDL_RENDERER_PRESENTVSYNC : 0);
-	if (rendererPtr == nullptr)
-	{
+	if (rendererPtr == nullptr) {
 		throw util::sdlError("Error while creating the renderer.");
 	}
 	Renderer::SDLRendererUPtr renderer(rendererPtr, SDL_DestroyRenderer);
@@ -112,16 +111,15 @@ Renderer Window::createRenderer(bool vSync) const
 
 std::string toString(const Window::Fullscreen& fullscreen)
 {
-	switch (fullscreen)
-	{
-	case Window::Fullscreen::DESKTOP:
-		return "Window::Fullscreen::DESKTOP";
-		break;
-	case Window::Fullscreen::VIDEOMODE:
-		return "Window::Fullscreen::VIDEOMODE";
-		break;
-	default:
-		throw std::runtime_error("Unhandled switch case");
+	switch (fullscreen) {
+		case Window::Fullscreen::DESKTOP:
+			return "Window::Fullscreen::DESKTOP";
+			break;
+		case Window::Fullscreen::VIDEOMODE:
+			return "Window::Fullscreen::VIDEOMODE";
+			break;
+		default:
+			throw std::runtime_error("Unhandled switch case");
 	}
 }
 
@@ -132,19 +130,18 @@ std::ostream& operator<<(std::ostream& os, const Window::Fullscreen& fullscreen)
 
 std::string toString(const Window::Border& border)
 {
-	switch (border)
-	{
-	case Window::Border::NORMAL:
-		return "Window::Border::NORMAL";
-		break;
-	case Window::Border::RESIZABLE:
-		return "Window::Border::RESIZABLE";
-		break;
-	case Window::Border::OFF:
-		return "Window::Border::OFF";
-		break;
-	default:
-		throw std::runtime_error("Unhandled switch case");
+	switch (border) {
+		case Window::Border::NORMAL:
+			return "Window::Border::NORMAL";
+			break;
+		case Window::Border::RESIZABLE:
+			return "Window::Border::RESIZABLE";
+			break;
+		case Window::Border::OFF:
+			return "Window::Border::OFF";
+			break;
+		default:
+			throw std::runtime_error("Unhandled switch case");
 	}
 }
 
@@ -155,19 +152,18 @@ std::ostream& operator<<(std::ostream& os, const Window::Border& border)
 
 std::string toString(const Window::State& state)
 {
-	switch (state)
-	{
-	case Window::State::NORMAL:
-		return "Window::State::NORMAL";
-		break;
-	case Window::State::MINIMIZED:
-		return "Window::State::MINIMIZED";
-		break;
-	case Window::State::MAXIMIZED:
-		return "Window::State::MAXIMIZED";
-		break;
-	default:
-		throw std::runtime_error("Unhandled switch case");
+	switch (state) {
+		case Window::State::NORMAL:
+			return "Window::State::NORMAL";
+			break;
+		case Window::State::MINIMIZED:
+			return "Window::State::MINIMIZED";
+			break;
+		case Window::State::MAXIMIZED:
+			return "Window::State::MAXIMIZED";
+			break;
+		default:
+			throw std::runtime_error("Unhandled switch case");
 	}
 }
 
@@ -181,4 +177,5 @@ Window::SDLWindowUPtr make_unique_window(SDL_Window* window)
 	return Window::SDLWindowUPtr(window, SDL_DestroyWindow);
 }
 
-}} // namespace pong::graphics
+} // namespace graphics
+} // namespace pong

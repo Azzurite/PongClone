@@ -1,9 +1,9 @@
-/** \file
+/*! \file
  *
- * \date 07.12.2014
- * \author Azzurite
+ * @date 07.12.2014
+ * @author Azzurite
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzurite
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 #include "graphics/Rect.h"
 
 namespace pong {
@@ -38,4 +38,5 @@ Rect& Rect::operator=(Rect&&) noexcept = default;
 
 // ====== freestanding: ======
 
-}} // namespace pong::graphics
+} // namespace graphics
+} // namespace pong

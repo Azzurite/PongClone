@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 16.11.2014
- * \author Azzu
+ * @date 16.11.2014
+ * @author Azzu
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzu
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -43,33 +43,33 @@ public:
 
 	using SDLRendererUPtr = std::unique_ptr<SDL_Renderer, decltype(&SDL_DestroyRenderer)>;
 
-	/**
+	/*!
 	 * @brief Default copy constructor.
 	 */
 	Renderer(const Renderer&) noexcept;
 
-	/**
+	/*!
 	 * @brief Default move constructor.
 	 */
 	Renderer(Renderer&&) noexcept;
 
-	/**
+	/*!
 	 * @brief Default destructor.
 	 */
 	~Renderer() noexcept;
 
-	/**
+	/*!
 	 * @brief Default copy assignment operator.
 	 */
 	Renderer& operator=(const Renderer&) noexcept;
 
-	/**
+	/*!
 	 * @brief Default move assignment operator.
 	 */
 	Renderer& operator=(Renderer&&) noexcept;
 
 
-	/**
+	/*!
 	 * @brief Creates a texture from a surface
 	 * @return the created texture
 	 */
@@ -98,4 +98,5 @@ private:
 
 };
 
-}} // namespace pong::graphics
+}
+} // namespace pong::graphics

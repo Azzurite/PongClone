@@ -1,9 +1,9 @@
-/** \file
+/*! @file
  *
- * \date 01.12.2014
- * \author Azzurite
+ * @date 01.12.2014
+ * @author Azzurite
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzurite
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 #include "graphics/Rect.h"
 
 #include "SDL.h"
@@ -130,7 +130,8 @@ using ::testing::Between;
 
 TEST(RectTest_UsesSDL, Rectangle_ConstructorXYWH)
 {
-	auto r = Rect({1, 2}, {50, 51});
+	auto r = Rect({1, 2},
+	{ 50, 51 });
 	EXPECT_EQ(1, static_cast<SDL_Rect>(r).x);
 	EXPECT_EQ(2, static_cast<SDL_Rect>(r).y);
 	EXPECT_EQ(50, static_cast<SDL_Rect>(r).w);
@@ -140,17 +141,22 @@ TEST(RectTest_UsesSDL, Rectangle_ConstructorXYWH)
 
 TEST(RectTest_UsesSDL, operatorEqual_Works)
 {
-	auto r1 = Rect({1, 2}, {50, 51});
-	auto r2 = Rect({1, 2}, {50, 51});
+	auto r1 = Rect{{1,  2},
+				   {50, 51}};
+	auto r2 = Rect{{1,  2},
+				   {50, 51}};
 	ASSERT_TRUE(r1 == r2);
 }
 
 TEST(RectTest_UsesSDL, operatorUnEqual_Works)
 {
-	auto r1 = Rect({1, 2}, {50, 51});
-	auto r2 = Rect({1, 3}, {50, 51});
+	auto r1 = Rect({1, 2},
+	{ 50, 51 });
+	auto r2 = Rect({1, 3},
+	{ 50, 51 });
 	ASSERT_TRUE(r1 != r2);
 }
 
 
-}} // namespace pong::graphics
+} // namespace graphics
+} // namespace pong

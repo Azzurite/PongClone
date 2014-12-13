@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 16.11.2014
- * \author Azzu
+ * @date 16.11.2014
+ * @author Azzu
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzu
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -30,13 +30,14 @@ class Renderer;
 class Renderable
 {
 public:
-	/**
+	/*!
 	 * @brief Default destructor.
 	 */
-//	virtual ~Renderable() noexcept = 0;
+	virtual ~Renderable() noexcept;
 
 	virtual void render(const Renderer&) const = 0;
 
 };
 
-}} // namespace pong::graphics
+} // namespace graphics
+} // namespace pong

@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 19.11.2014
- * \author Azzu
+ * @date 19.11.2014
+ * @author Azzu
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzu
  *
  *   This program is free software: you can redistribute it and/or modify

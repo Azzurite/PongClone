@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 30.11.2014
- * \author Azzurite
+ * @date 30.11.2014
+ * @author Azzurite
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzurite
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 #include "util/Strings.h"
 
 #include <string>
@@ -121,19 +121,13 @@ using ::testing::Between;
 class StringsTest : public ::testing::Test
 {
 public:
-	StringsTest()
-	{
-	}
-	virtual void SetUp()
-	{	
-	}
+	StringsTest() {}
 
-	virtual ~StringsTest()
-	{
-	}
-	virtual void TearDown()
-	{
-	}
+	virtual void SetUp() {}
+
+	virtual ~StringsTest() {}
+
+	virtual void TearDown() {}
 };
 
 TEST_F(StringsTest, Join_CanJoinStrings)
@@ -161,4 +155,5 @@ TEST_F(StringsTest, ToStringJoin_CanJoinNumbers_WhenNumberTypesDiffer)
 	ASSERT_EQ(string("1,2,3"), toStringJoin(",", 1U, 2L, 3ULL));
 }
 
-}} // namespace pong::util
+}
+} // namespace pong::util

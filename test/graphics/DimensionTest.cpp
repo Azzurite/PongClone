@@ -1,9 +1,9 @@
-/** \file
+/*! @file
  *
- * \date 07.12.2014
- * \author Azzurite
+ * @date 07.12.2014
+ * @author Azzurite
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzurite
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 #include "graphics/Dimension.h"
 
 #include "gtest/gtest.h"
@@ -128,19 +128,13 @@ using ::testing::Between;
 class DimensionTest : public Test
 {
 public:
-	DimensionTest()
-	{
-	}
-	virtual void SetUp()
-	{	
-	}
+	DimensionTest() { }
 
-	virtual ~DimensionTest()
-	{
-	}
-	virtual void TearDown()
-	{
-	}
+	virtual void SetUp() { }
+
+	virtual ~DimensionTest() { }
+
+	virtual void TearDown() { }
 };
 
 TEST_F(DimensionTest, Dimension_Constructors)
@@ -154,4 +148,5 @@ TEST_F(DimensionTest, Dimension_Constructors)
 	EXPECT_EQ(100, d2.height());
 }
 
-}} // namespace pong::graphics
+} // namespace graphics
+} // namespace pong

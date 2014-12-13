@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 19.11.2014
- * \author Azzu
+ * @date 19.11.2014
+ * @author Azzu
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzu
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -31,12 +31,12 @@ class Color final
 {
 public:
 
-	/**
+	/*!
 	 * @brief Pure black.
 	 */
 	constexpr Color() noexcept : Color(0, 0, 0) {}
 
-	/**
+	/*!
 	 * @brief Creates the specified color
 	 *
 	 * @param red 0-255
@@ -46,28 +46,28 @@ public:
 	 */
 	constexpr Color(Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha = 255) noexcept : color_{red, green, blue, alpha} {}
 
-	/**
+	/*!
 	 * @brief Default copy constructor.
 	 */
 	constexpr Color(const Color&) noexcept = default;
 
-	/**
+	/*!
 	 * @brief Default move constructor.
 	 */
 	constexpr Color(Color&&) noexcept = default;
 
-	/**
+	/*!
 	 * @brief Default destructor.
 	 */
 	~Color() noexcept = default;
 
 
-	/**
+	/*!
 	 * @brief Default copy assignment operator.
 	 */
 	Color& operator=(const Color&) noexcept;
 
-	/**
+	/*!
 	 * @brief Default move assignment operator.
 	 */
 	Color& operator=(Color&&) noexcept;

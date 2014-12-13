@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 19.02.2014
- * \author Timo
+ * @date 19.02.2014
+ * @author Timo
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  */
 
 #include "Game.h"
@@ -20,9 +20,11 @@ class GameTest_UsesSDL : public ::testing::Test
 {
 public:
 	GameTest_UsesSDL() {}
+
 	virtual void SetUp() {}
 
 	virtual ~GameTest_UsesSDL() {}
+
 	virtual void TearDown() {}
 
 };

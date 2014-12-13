@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 16.11.2014
- * \author Azzu
+ * @date 16.11.2014
+ * @author Azzu
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzu
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -30,6 +30,7 @@
 
 #include "graphics/Renderer.h"
 #include "graphics/Texture.h"
+#include "util/NotImplementedException.h"
 
 using pong::graphics::Renderer;
 using pong::graphics::Texture;
@@ -41,15 +42,15 @@ namespace gamestate {
 
 GameState::GameState() noexcept = default;
 
-GameState::GameState(const GameState &) noexcept = delete;
+GameState::GameState(const GameState&) noexcept = delete;
 
-GameState::GameState(GameState &&) noexcept = default;
+GameState::GameState(GameState&&) noexcept = default;
 
 GameState::~GameState() noexcept = default;
 
-GameState &GameState::operator=(const GameState &) noexcept = delete;
+GameState& GameState::operator=(const GameState&) noexcept = delete;
 
-GameState &GameState::operator=(GameState &&) noexcept = default;
+GameState& GameState::operator=(GameState&&) noexcept = default;
 
 void GameState::pause()
 {
@@ -74,8 +75,7 @@ void GameState::render(const Renderer& r) const
 
 void GameState::renderPaused(const Renderer& r) const
 {
-	if (!cachedRender_)
-	{
+	if (!cachedRender_) {
 		// TODO impl
 //		renderImpl(r);
 //		SDL_Window* w = r.getWindow();
@@ -95,4 +95,5 @@ void GameState::renderPaused(const Renderer& r) const
 // ====== private: ======
 
 
-}} // namespace pong::gamestate
+} // namespace gamestate
+} // namespace pong

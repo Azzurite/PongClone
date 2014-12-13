@@ -1,9 +1,9 @@
-/** \file
+/*! @file
  *
- * \date 07.12.2014
- * \author Azzurite
+ * @date 07.12.2014
+ * @author Azzurite
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzurite
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 #include "graphics/Point.h"
 
 #include "gtest/gtest.h"
@@ -128,19 +128,13 @@ using ::testing::Between;
 class PointTest : public Test
 {
 public:
-	PointTest()
-	{
-	}
-	virtual void SetUp()
-	{	
-	}
+	PointTest() { }
 
-	virtual ~PointTest()
-	{
-	}
-	virtual void TearDown()
-	{
-	}
+	virtual void SetUp() { }
+
+	virtual ~PointTest() { }
+
+	virtual void TearDown() { }
 };
 
 TEST_F(PointTest, Point_Constructors)
@@ -153,4 +147,5 @@ TEST_F(PointTest, Point_Constructors)
 	EXPECT_EQ(44, p2.y());
 }
 
-}} // namespace pong::graphics
+} // namespace graphics
+} // namespace pong

@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 21.11.2014
- * \author Azzu
+ * @date 21.11.2014
+ * @author Azzu
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzu
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -35,11 +35,11 @@ string join(string separator, std::initializer_list<string> elements)
 	if (cur == elements.end()) return string{};
 
 	auto joined = *cur++;
-	while (cur != elements.end())
-	{
+	while (cur != elements.end()) {
 		joined += separator + *cur++;
 	}
 	return joined;
 }
 
-}} // namespace pong::util
+} // namespace util
+} // namespace pong

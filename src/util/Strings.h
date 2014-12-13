@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 21.11.2014
- * \author Azzu
+ * @date 21.11.2014
+ * @author Azzu
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzu
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 namespace pong {
 namespace util {
 
-/**
+/*!
  * @brief Joins the strings in the list with the given separator between them
  * @param separator the string to be inserted between the elements
  * @param elements list of the strings to join
@@ -35,15 +35,16 @@ namespace util {
 std::string join(std::string separator, std::initializer_list<std::string> elements);
 
 
-/**
+/*!
  * @brief Converts the elements std::to_string and joins them with the given separator.
  * @param separator the string to be inserted between the elements
  * @param elements the elements to join
  */
-template<typename... Elements>
+template <typename... Elements>
 std::string toStringJoin(std::string separator, Elements... elements)
 {
 	return join(separator, std::initializer_list<std::string>{std::to_string(elements)...});
 }
 
-}} // namespace pong::util
+} // namespace util
+} // namespace pong

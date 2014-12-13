@@ -1,9 +1,9 @@
-/** \file
+/*! @file
  *
- * \date 01.12.2014
- * \author Azzurite
+ * @date 01.12.2014
+ * @author Azzurite
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzurite
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 #include "graphics/Color.h"
 
 #include "SDL.h"
@@ -155,17 +155,18 @@ TEST(ColorTest, operatorSDLColor_ConvertsSuccessfully)
 
 TEST(ColorTest, operatorEquals_Works)
 {
-	auto c1 = Color{1,2,3,4};
-	auto c2 = Color{1,2,3,4};
+	auto c1 = Color{1, 2, 3, 4};
+	auto c2 = Color{1, 2, 3, 4};
 	ASSERT_TRUE(c1 == c2);
 }
 
 TEST(ColorTest, operatorUnEqual_Works)
 {
-	auto c1 = Color{1,2,3,4};
-	auto c2 = Color{1,2,3,5};
+	auto c1 = Color{1, 2, 3, 4};
+	auto c2 = Color{1, 2, 3, 5};
 	ASSERT_TRUE(c1 != c2);
 }
 
 
-}} // namespace pong::graphics
+} // namespace graphics
+} // namespace pong

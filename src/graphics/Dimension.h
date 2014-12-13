@@ -1,9 +1,9 @@
-/** \file
+/*! \file
  *
- * \date 07.12.2014
- * \author Azzurite
+ * @date 07.12.2014
+ * @author Azzurite
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzurite
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 #pragma once
 
 namespace pong {
@@ -30,43 +30,43 @@ class Dimension
 {
 public:
 
-	/**
+	/*!
 	 * @brief Default constructor.
 	 */
 	constexpr Dimension() noexcept = default;
 
-	/**
+	/*!
 	* @brief Constructs a new dimension
 	* @param width
 	* @param height
 	*/
-	constexpr Dimension(int width, int height) noexcept : width_(width), height_(height) {}
+	constexpr Dimension(int width, int height) noexcept : width_(width), height_(height) { }
 
-	/**
+	/*!
 	 * @brief Default copy constructor.
 	 */
-	constexpr Dimension(const Dimension &) noexcept = default;
-		
-	/**
+	constexpr Dimension(const Dimension&) noexcept = default;
+
+	/*!
 	 * @brief Default move constructor.
 	 */
-	constexpr Dimension(Dimension &&) noexcept = default;
-	
-	/**
+	constexpr Dimension(Dimension&&) noexcept = default;
+
+	/*!
 	 * @brief Default destructor.
 	 */
 	~Dimension() noexcept = default;
-	
-	
-	/**
+
+
+	/*!
 	 * @brief Default copy assignment operator.
 	 */
-	Dimension & operator=(const Dimension &) noexcept;
+	Dimension& operator=(const Dimension&) noexcept;
 
-	/**
+	/*!
 	 * @brief Default move assignment operator.
 	 */
-	Dimension & operator=(Dimension &&) noexcept;
+	Dimension& operator=(Dimension&&) noexcept;
 
 	constexpr int width() const { return width_; }
 
@@ -80,11 +80,11 @@ private:
 
 };
 
-constexpr bool operator==(const Dimension & lhs, const Dimension & rhs)
+constexpr bool operator==(const Dimension& lhs, const Dimension& rhs)
 {
 	return lhs.width() == rhs.width() && lhs.height() == rhs.height();
 }
 
 
-
-}} // namespace pong::graphics
+} // namespace graphics
+} // namespace pong

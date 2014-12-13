@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 19.11.2014
- * \author Azzu
+ * @date 19.11.2014
+ * @author Azzu
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzu
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -60,8 +60,7 @@ void StateStack::pop()
 
 void StateStack::render(const Renderer& renderer) const
 {
-	for (auto cur = stateStack_.crbegin(); cur != stateStack_.crend(); ++cur)
-	{
+	for (auto cur = stateStack_.crbegin(); cur != stateStack_.crend(); ++cur) {
 		(*cur)->render(renderer);
 	}
 }
@@ -72,4 +71,5 @@ void StateStack::render(const Renderer& renderer) const
 
 
 
-}} // namespace pong::gamestate
+} // namespace gamestate
+} // namespace pong

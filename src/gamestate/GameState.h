@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 16.11.2014
- * \author Azzu
+ * @date 16.11.2014
+ * @author Azzu
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzu
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,8 @@ namespace pong {
 namespace graphics {
 class Renderer;
 class Texture;
-}}
+}
+}
 
 struct SDL_Surface;
 
@@ -41,28 +42,28 @@ class GameState : public pong::graphics::Renderable
 {
 public:
 
-	/**
+	/*!
 	 * @brief Default constructor.
 	 */
 	GameState() noexcept;
 
-	/**
+	/*!
 	 * @brief Default copy constructor.
 	 */
 	GameState(const GameState&) noexcept;
 
-	/**
+	/*!
 	 * @brief Default move constructor.
 	 */
 	GameState(GameState&&) noexcept;
 
-	/**
+	/*!
 	 * @brief Default destructor.
 	 */
 	~GameState() noexcept;
 
 
-	/**
+	/*!
 	 * @brief Default copy assignment operator.
 	 */
 	GameState& operator=(const GameState&) noexcept;
@@ -93,4 +94,5 @@ private:
 
 };
 
-}} // namespace pong::gamestate
+} // namespace gamestate
+} // namespace pong

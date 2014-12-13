@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 16.11.2014
- * \author Azzu
+ * @date 16.11.2014
+ * @author Azzu
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzu
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -52,8 +52,7 @@ Texture Renderer::createTexture(const Surface& surface) const
 {
 	auto sdlSurface = (static_cast<SDL_Surface&>(surface));
 	auto texture = make_unique_texture(SDL_CreateTextureFromSurface(renderer_.get(), &sdlSurface));
-	if (!texture)
-	{
+	if (!texture) {
 		throw util::sdlError("Failed to create texture from surface.");
 	}
 
@@ -107,4 +106,5 @@ void Renderer::setRenderColor(const Color& color) const
 }
 
 
-}} // namespace pong::graphics
+} // namespace graphics
+} // namespace pong

@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 16.11.2014
- * \author Azzu
+ * @date 16.11.2014
+ * @author Azzu
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzu
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -37,21 +37,23 @@ namespace gamestate {
 
 MainMenu::MainMenu() noexcept = default;
 
-MainMenu::MainMenu(const MainMenu &) noexcept = delete;
+MainMenu::MainMenu(const MainMenu&) noexcept = delete;
 
-MainMenu::MainMenu(MainMenu &&) noexcept = default;
+MainMenu::MainMenu(MainMenu&&) noexcept = default;
 
 MainMenu::~MainMenu() noexcept = default;
 
-MainMenu &MainMenu::operator=(const MainMenu &) noexcept = delete;
+MainMenu& MainMenu::operator=(const MainMenu&) noexcept = delete;
 
-MainMenu &MainMenu::operator=(MainMenu &&) noexcept = default;
+MainMenu& MainMenu::operator=(MainMenu&&) noexcept = default;
 
 // ====== protected: ======
 
 void MainMenu::renderImpl(const Renderer& renderer) const
 {
-	auto r = RenderRect({{100, 100}, {200, 200}, {255, 255, 255}});
+	auto r = RenderRect({{100, 100},
+						 {200, 200},
+						 {255, 255, 255}});
 
 	r.render(renderer);
 }
@@ -59,4 +61,5 @@ void MainMenu::renderImpl(const Renderer& renderer) const
 // ====== private: ======
 
 
-}} // namespace pong::graphics
+} // namespace gamestate
+} // namespace pong

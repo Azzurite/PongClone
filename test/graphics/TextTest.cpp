@@ -1,9 +1,9 @@
-/** \file
+/*! @file
  *
- * \date 08.12.2014
- * \author Azzurite
+ * @date 08.12.2014
+ * @author Azzurite
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzurite
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 #include "graphics/text/Text.h"
 
 #include "gtest/gtest.h"
@@ -129,19 +129,13 @@ using ::testing::Between;
 class TextTest_UsesSDL : public Test
 {
 public:
-	TextTest_UsesSDL()
-	{
-	}
-	virtual void SetUp()
-	{	
-	}
+	TextTest_UsesSDL() { }
 
-	virtual ~TextTest_UsesSDL()
-	{
-	}
-	virtual void TearDown()
-	{
-	}
+	virtual void SetUp() { }
+
+	virtual ~TextTest_UsesSDL() { }
+
+	virtual void TearDown() { }
 };
 
 TEST_F(TextTest_UsesSDL, DefaultTest)
@@ -149,4 +143,6 @@ TEST_F(TextTest_UsesSDL, DefaultTest)
 
 }
 
-}}} // namespace pong::graphics::text
+} // namespace text
+} // namespace graphics
+} // namespace pong

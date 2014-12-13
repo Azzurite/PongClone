@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 19.02.2014
- * \author Azzu
+ * @date 19.02.2014
+ * @author Azzu
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  * Copyright (C) 2014 Azzu
  *
  * This program is free software: you can redistribute it and/or modify
@@ -39,34 +39,33 @@ public:
 	const static auto cRENDER_WIDTH = 1280;
 	const static auto cRENDER_HEIGHT = 720;
 
-	/**
+	/*!
 	* @brief Default constructor.
 	*/
 	GameWindow();
 
-	/**
+	/*!
 	* @brief Default copy constructor.
 	*/
 	GameWindow(const GameWindow&) noexcept;
 
-	/**
+	/*!
 	* @brief Default move constructor.
 	*/
 	GameWindow(GameWindow&&);
 
-	/**
+	/*!
 	* @brief Default destructor.
 	*/
 	~GameWindow() noexcept;
 
 
-
-	/**
+	/*!
 	* @brief Default copy assignment operator.
 	*/
 	GameWindow& operator=(const GameWindow&) noexcept;
 
-	/**
+	/*!
 	* @brief Default move assignment operator.
 	*/
 	GameWindow& operator=(GameWindow&&);
@@ -84,4 +83,5 @@ private:
 
 };
 
-}} // namespace pong::graphics
+} // namespace graphics
+} // namespace pong

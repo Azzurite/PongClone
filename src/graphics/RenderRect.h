@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 18.11.2014
- * \author Azzu
+ * @date 18.11.2014
+ * @author Azzu
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzu
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -37,7 +37,7 @@ class RenderRect final : public Renderable
 {
 public:
 
-	/**
+	/*!
 	 * @brief Creates a new rectangle
 	 * @param x location from upper left corner in x direction
 	 * @param y location from upper left corner in y direction
@@ -46,30 +46,30 @@ public:
 	 */
 	RenderRect(Rect rect) noexcept;
 
-	/**
+	/*!
 	 * @brief Default copy constructor.
 	 */
-	RenderRect(const RenderRect &) noexcept;
+	RenderRect(const RenderRect&) noexcept;
 
-	/**
+	/*!
 	 * @brief Default move constructor.
 	 */
-	RenderRect(RenderRect &&) noexcept;
+	RenderRect(RenderRect&&) noexcept;
 
-	/**
+	/*!
 	 * @brief Default destructor.
 	 */
 	virtual ~RenderRect() noexcept;
 
-	/**
+	/*!
 	 * @brief Default copy assignment operator.
 	 */
-	RenderRect & operator=(const RenderRect &) noexcept;
+	RenderRect& operator=(const RenderRect&) noexcept;
 
-	/**
+	/*!
 	 * @brief Default move assignment operator.
 	 */
-	RenderRect & operator=(RenderRect &&) noexcept;
+	RenderRect& operator=(RenderRect&&) noexcept;
 
 	operator const Rect&() const { return rect_; }
 
@@ -86,9 +86,10 @@ private:
 };
 
 
-bool operator==(const RenderRect & lhs, const RenderRect & rhs);
+bool operator==(const RenderRect& lhs, const RenderRect& rhs);
 
-bool operator!=(const RenderRect & lhs, const RenderRect & rhs);
+bool operator!=(const RenderRect& lhs, const RenderRect& rhs);
 
 
-}} // namespace pong::graphics
+} // namespace graphics
+} // namespace pong

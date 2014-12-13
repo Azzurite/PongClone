@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 19.02.2014
- * \author Azzu
+ * @date 19.02.2014
+ * @author Azzu
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  * Copyright (C) 2014 Azzu
  *
  * This program is free software: you can redistribute it and/or modify
@@ -38,38 +38,38 @@ class Game final
 {
 public:
 
-	/**
+	/*!
 	 * @brief Default constructor.
 	 */
 	Game();
 
-	/**
+	/*!
 	 * @brief Default copy constructor, deleted
 	 */
 	Game(const Game& toCopy) noexcept;
 
-	/**
+	/*!
 	 * @brief Default move constructor, deleted
 	 */
 	Game(Game&& toMove) noexcept;
 
-	/**
+	/*!
 	 * @brief Default destructor.
 	 */
 	~Game() noexcept;
 
 
-	/**
+	/*!
 	 * @brief Default copy assignment operator, deleted
 	 */
 	Game& operator=(const Game& toCopy) noexcept;
 
-	/**
+	/*!
 	 * @brief Default move assignment operator, deleted
 	 */
 	Game& operator=(Game&& toMove) noexcept;
 
-	/**
+	/*!
 	 * @brief Runs the game.
 	 */
 	int loop();
@@ -77,7 +77,6 @@ public:
 
 private:
 	std::unique_ptr<graphics::GameWindow> mainWindow_;
-
 };
 
 constexpr Uint32 cUSED_SDL_SUBSYSTEMS = SDL_INIT_VIDEO | SDL_INIT_AUDIO;

@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 22.11.2014
- * \author Azzu
+ * @date 22.11.2014
+ * @author Azzu
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzu
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -35,4 +35,5 @@ std::runtime_error sdlError(std::string message)
 	return std::runtime_error(message + " | SDL error message: " + SDL_GetError());
 }
 
-}} // namespace pong::util
+} // namespace util
+} // namespace pong

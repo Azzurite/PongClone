@@ -1,9 +1,9 @@
-/** \file
+/*! @file
  *
- * \date 07.12.2014
- * \author Azzurite
+ * @date 07.12.2014
+ * @author Azzurite
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzurite
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 #include "graphics/RenderRect.h"
 
 #include "gtest/gtest.h"
@@ -130,32 +130,29 @@ using ::testing::Between;
 class RenderRectTest_UsesSDL : public Test
 {
 public:
-	RenderRectTest_UsesSDL()
-	{
-	}
-	virtual void SetUp()
-	{	
-	}
+	RenderRectTest_UsesSDL() { }
 
-	virtual ~RenderRectTest_UsesSDL()
-	{
-	}
-	virtual void TearDown()
-	{
-	}
+	virtual void SetUp() { }
+
+	virtual ~RenderRectTest_UsesSDL() { }
+
+	virtual void TearDown() { }
 };
 
 TEST_F(RenderRectTest_UsesSDL, RenderRectangle_ConstructFromRect)
 {
-	auto r = Rect({0, 0}, {50, 50}, {255, 0, 0});
+	auto r = Rect({0, 0},
+	{ 50, 50 }, { 255, 0, 0 });
 	auto rect = RenderRect(r);
 }
 
 TEST_F(RenderRectTest_UsesSDL, OperatorRect)
 {
-	auto r = Rect({0, 0}, {50, 50}, {255, 0, 0});
+	auto r = Rect({0, 0},
+	{ 50, 50 }, { 255, 0, 0 });
 	auto rect = RenderRect(r);
 	ASSERT_EQ(r, static_cast<Rect>(rect));
 }
 
-}} // namespace pong::graphics
+} // namespace graphics
+} // namespace pong

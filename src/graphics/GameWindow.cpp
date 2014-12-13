@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 19.02.2014
- * \author Azzu
+ * @date 19.02.2014
+ * @author Azzu
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzu
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -42,7 +42,7 @@ namespace pong {
 namespace graphics {
 
 namespace {
-	const char* const cPONG_WINDOW_NAME = "Pong";
+const char* const cPONG_WINDOW_NAME = "Pong";
 }
 
 
@@ -67,7 +67,8 @@ GameWindow& GameWindow::operator=(const GameWindow&) noexcept = delete;
 GameWindow& GameWindow::operator=(GameWindow&&) = default;
 
 
-void GameWindow::update() {
+void GameWindow::update()
+{
 	stateStack_.render(renderer_);
 
 	renderer_.renderPresent();
@@ -78,5 +79,6 @@ void GameWindow::update() {
 // ====== private: ======
 
 
-}} // namespace pong::graphics
+} // namespace graphics
+} // namespace pong
 

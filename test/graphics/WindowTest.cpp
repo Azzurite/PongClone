@@ -1,9 +1,9 @@
-/** \file
+/*! @file
  *
- * \date 04.12.2014
- * \author Azzurite
+ * @date 04.12.2014
+ * @author Azzurite
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzurite
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 #include "graphics/Window.h"
 
 #include <tuple>
@@ -137,37 +137,29 @@ using WindowParamTuple = std::tuple<Window::State, Window::Fullscreen, Window::B
 class WindowTest_UsesSDL : public Test
 {
 public:
-	WindowTest_UsesSDL() : w("Test")
-	{
-	}
-	virtual void SetUp()
-	{
-	}
+	WindowTest_UsesSDL() : w("Test") { }
 
-	virtual ~WindowTest_UsesSDL()
-	{
-	}
-	virtual void TearDown()
-	{
-	}
+	virtual void SetUp() { }
+
+	virtual ~WindowTest_UsesSDL() { }
+
+	virtual void TearDown() { }
 
 	Window w;
 };
 
 TEST_F(WindowTest_UsesSDL, createRenderer)
 {
-
 	Renderer r = w.createRenderer(false);
 }
 
 
 class WindowConstructTest_UsesSDL : public Test,
-									   public WithParamInterface<WindowParamTuple>
+									public WithParamInterface<WindowParamTuple>
 {
 public:
-	WindowConstructTest_UsesSDL()
-	{
-	}
+	WindowConstructTest_UsesSDL() { }
+
 	virtual void SetUp()
 	{
 		f = std::get<Window::Fullscreen>(GetParam());
@@ -176,12 +168,9 @@ public:
 		i = std::get<bool>(GetParam());
 	}
 
-	virtual ~WindowConstructTest_UsesSDL()
-	{
-	}
-	virtual void TearDown()
-	{
-	}
+	virtual ~WindowConstructTest_UsesSDL() { }
+
+	virtual void TearDown() { }
 
 	Window::Fullscreen f;
 	Window::State s;
@@ -206,16 +195,17 @@ TEST_P(WindowConstructTest_UsesSDL, Window_Windowed)
 }
 
 namespace {
-	std::array<WindowParamTuple, 3> options{
+std::array<WindowParamTuple, 3> options{
 		std::make_tuple<Window::State, Window::Fullscreen, Window::Border, bool>(
-			Window::State::NORMAL, Window::Fullscreen::DESKTOP, Window::Border::NORMAL, true),
+				Window::State::NORMAL, Window::Fullscreen::DESKTOP, Window::Border::NORMAL, true),
 		std::make_tuple<Window::State, Window::Fullscreen, Window::Border, bool>(
-			Window::State::MINIMIZED, Window::Fullscreen::VIDEOMODE, Window::Border::OFF, false),
+				Window::State::MINIMIZED, Window::Fullscreen::VIDEOMODE, Window::Border::OFF, false),
 		std::make_tuple<Window::State, Window::Fullscreen, Window::Border, bool>(
-			Window::State::MAXIMIZED, Window::Fullscreen::DESKTOP, Window::Border::RESIZABLE, true)
-	};
+				Window::State::MAXIMIZED, Window::Fullscreen::DESKTOP, Window::Border::RESIZABLE, true)
+};
 }
 
 INSTANTIATE_TEST_CASE_P(InitValues, WindowConstructTest_UsesSDL, ValuesIn(options));
 
-}} // namespace pong::graphics
+} // namespace graphics
+} // namespace pong

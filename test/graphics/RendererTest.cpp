@@ -1,9 +1,9 @@
-/** \file
+/*! @file
  *
- * \date 06.12.2014
- * \author Azzurite
+ * @date 06.12.2014
+ * @author Azzurite
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzurite
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 #include "graphics/Renderer.h"
 
 #include "SDL.h"
@@ -136,23 +136,18 @@ using ::testing::Between;
 class RendererTest_UsesSDL : public Test
 {
 public:
-	RendererTest_UsesSDL() : w("Test"), r(w.createRenderer(false))
-	{
-	}
+	RendererTest_UsesSDL() : w("Test"), r(w.createRenderer(false)) {}
+
 	virtual void SetUp()
 	{
-		if (SDL_Init(SDL_INIT_VIDEO) != 0)
-		{
+		if (SDL_Init(SDL_INIT_VIDEO) != 0) {
 			throw "Error initializing SDL";
 		}
 	}
 
-	virtual ~RendererTest_UsesSDL()
-	{
-	}
-	virtual void TearDown()
-	{
-	}
+	virtual ~RendererTest_UsesSDL() {}
+
+	virtual void TearDown() {}
 
 	Window w;
 	Renderer r;
@@ -168,7 +163,8 @@ TEST_F(RendererTest_UsesSDL, createTexture)
 
 TEST_F(RendererTest_UsesSDL, renderRectangle)
 {
-	auto rect = Rect({0, 0}, {50, 50});
+	auto rect = Rect({0, 0},
+	{50, 50});
 	r.render(rect);
 }
 
@@ -185,4 +181,5 @@ TEST_F(RendererTest_UsesSDL, setLogicalSize)
 	ASSERT_EQ(expected, r.getLogicalSize());
 }
 
-}} // namespace pong::graphics
+} // namespace graphics
+} // namespace pong

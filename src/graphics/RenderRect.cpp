@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 18.11.2014
- * \author Azzu
+ * @date 18.11.2014
+ * @author Azzu
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzu
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -31,19 +31,20 @@ namespace graphics {
 
 // ====== public: ======
 
-RenderRect::RenderRect(Rect rect) noexcept : rect_(rect) {}
+RenderRect::RenderRect(Rect rect) noexcept : rect_(rect) { }
 
-RenderRect::RenderRect(const RenderRect &) noexcept = default;
+RenderRect::RenderRect(const RenderRect&) noexcept = default;
 
-RenderRect::RenderRect(RenderRect &&) noexcept = default;
+RenderRect::RenderRect(RenderRect&&) noexcept = default;
 
 RenderRect::~RenderRect() noexcept = default;
 
-RenderRect &RenderRect::operator=(const RenderRect &) noexcept = default;
+RenderRect& RenderRect::operator=(const RenderRect&) noexcept = default;
 
-RenderRect &RenderRect::operator=(RenderRect &&) noexcept = default;
+RenderRect& RenderRect::operator=(RenderRect&&) noexcept = default;
 
-void RenderRect::render(const Renderer& renderer) const {
+void RenderRect::render(const Renderer& renderer) const
+{
 	renderer.render(rect_);
 }
 
@@ -53,15 +54,16 @@ void RenderRect::render(const Renderer& renderer) const {
 
 // ====== freestanding: =====
 
-bool operator==(const RenderRect & lhs, const RenderRect & rhs)
+bool operator==(const RenderRect& lhs, const RenderRect& rhs)
 {
 	return static_cast<Rect>(lhs) == static_cast<Rect>(rhs);
 }
 
-bool operator!=(const RenderRect & lhs, const RenderRect & rhs)
+bool operator!=(const RenderRect& lhs, const RenderRect& rhs)
 {
 	return !(lhs == rhs);
 }
 
 
-}} // namespace pong::graphics
+} // namespace graphics
+} // namespace pong

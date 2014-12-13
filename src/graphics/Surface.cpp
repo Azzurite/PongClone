@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 16.11.2014
- * \author Azzu
+ * @date 16.11.2014
+ * @author Azzu
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  *   Copyright (C) 2014 Azzu
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -59,4 +59,5 @@ Surface& Surface::operator=(Surface&&) noexcept = default;
 // ====== private: ======
 
 
-}} // namespace pong::graphics
+} // namespace graphics
+} // namespace pong

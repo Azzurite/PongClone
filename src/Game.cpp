@@ -1,9 +1,9 @@
-/** @file
+/*! @file
  *
- * \date 19.02.2014
- * \author Azzu
+ * @date 19.02.2014
+ * @author Azzu
  *
- * \copyright GPL v3
+ * @copyright GPL v3
  * Copyright (C) 2014 Azzu
  *
  * This program is free software: you can redistribute it and/or modify
@@ -42,13 +42,11 @@ namespace pong {
 
 Game::Game()
 {
-	if (SDL_Init(cUSED_SDL_SUBSYSTEMS) != 0)
-	{
+	if (SDL_Init(cUSED_SDL_SUBSYSTEMS) != 0) {
 		throw util::sdlError("Error while initializing SDL2.");
 	}
 
-	if (TTF_Init() != 0)
-	{
+	if (TTF_Init() != 0) {
 		throw util::sdlError("Error while initializing SDL_TTF.");
 	}
 
@@ -74,13 +72,10 @@ Game& Game::operator=(Game&& toMove) noexcept = delete;
 int Game::loop()
 {
 	auto quit = false;
-	while (!quit)
-	{
+	while (!quit) {
 		SDL_Event e;
-		while (SDL_PollEvent(&e))
-		{
-			if (e.type == SDL_QUIT || e.type == SDL_KEYDOWN)
-			{
+		while (SDL_PollEvent(&e)) {
+			if (e.type == SDL_QUIT || e.type == SDL_KEYDOWN) {
 				std::cout << "Quit called" << std::endl;
 				quit = true;
 			}

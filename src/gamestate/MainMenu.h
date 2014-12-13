@@ -1,9 +1,9 @@
-/** @file
+/*! @file
 *
-* \date 16.11.2014
-* \author Azzu
+* @date 16.11.2014
+* @author Azzu
 *
-* \copyright GPL v3
+* @copyright GPL v3
 *   Copyright (C) 2014 Azzu
 *
 *   This program is free software: you can redistribute it and/or modify
@@ -31,35 +31,35 @@ namespace gamestate {
 class MainMenu : public GameState
 {
 public:
-	/**
+	/*!
 	* @brief Default constructor.
 	*/
 	MainMenu() noexcept;
 
-	/**
+	/*!
 	* @brief Default copy constructor.
 	*/
 	MainMenu(const MainMenu&) noexcept;
 
-	/**
+	/*!
 	* @brief Default move constructor.
 	*/
 	MainMenu(MainMenu&&) noexcept;
 
-	/**
+	/*!
 	* @brief Default destructor.
 	*/
 	virtual ~MainMenu() noexcept;
 
-	/**
+	/*!
 	* @brief Default copy assignment operator.
 	*/
-	MainMenu&operator=(const MainMenu&) noexcept;
+	MainMenu& operator=(const MainMenu&) noexcept;
 
-	/**
+	/*!
 	* @brief Default move assignment operator.
 	*/
-	MainMenu&operator=(MainMenu&&) noexcept;
+	MainMenu& operator=(MainMenu&&) noexcept;
 
 protected:
 
@@ -69,4 +69,5 @@ private:
 
 };
 
-}} // namespace pong::graphics
+} // namespace gamestate
+} // namespace pong
