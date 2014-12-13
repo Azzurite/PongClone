@@ -77,6 +77,7 @@ void GameState::renderPaused(const Renderer& r) const
 {
 	if (!cachedRender_) {
 		// TODO impl
+		throw util::NotImplementedException{};
 //		renderImpl(r);
 //		SDL_Window* w = r.getWindow();
 //		SDL_Surface* windowSurface = SDL_GetWindowSurface(w);
