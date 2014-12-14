@@ -23,9 +23,61 @@
 #pragma once
 
 #include <string>
+#include <sstream>
+#include <vector>
+#include <iterator>
+
+#include "boost/mpl/distance.hpp"
+
 
 namespace pong {
 namespace util {
+
+/*!
+ * @brief Extracts the parameters out of main()s parameters.
+ * @param argc size of array
+ * @param argv cstring array
+ * @return vector of program parameters
+ */
+std::vector<std::string> getParams(int argc, char** argv);
+
+
+/*!
+ * @brief Joins an arbitrary number of elements into an std::string with the given separator.
+ *
+ * Streams each element to an ostream.
+ *
+ * @param separator the string to be inserted between the elements
+ * @param begin the begin iterator
+ * @param end the end iterator
+ */
+template <typename ForwardIterator>
+std::string join(std::string separator, ForwardIterator begin, ForwardIterator end)
+{
+	auto cur = begin;
+	if (cur == end) return std::string{};
+
+	std::ostringstream toStrHelper;
+	toStrHelper << *cur++;
+	while (cur != end) {
+		toStrHelper << separator << *cur++;
+	}
+	return toStrHelper.str();
+}
+
+/*!
+ * @brief Joins an arbitrary number of elements into an std::string with the given separator.
+ *
+ * Streams each element to an ostream.
+ *
+ * @param separator the string to be inserted between the elements
+ * @param container a container, valid target for std::begin() + std::end()
+ */
+template <typename Container>
+std::string join(std::string separator, Container container)
+{
+	return join(separator, std::begin(container), std::end(container));
+}
 
 /*!
  * @brief Joins the strings in the list with the given separator between them
@@ -33,7 +85,6 @@ namespace util {
  * @param elements list of the strings to join
  */
 std::string join(std::string separator, std::initializer_list<std::string> elements);
-
 
 /*!
  * @brief Converts the elements std::to_string and joins them with the given separator.

@@ -22,24 +22,27 @@
 
 #include "util/Strings.h"
 
-#include <string>
 #include <initializer_list>
+#include <algorithm>
+#include <iterator>
+#include <string>
 using std::string;
+
 
 namespace pong {
 namespace util {
 
 string join(string separator, std::initializer_list<string> elements)
 {
-	auto cur = elements.begin();
-	if (cur == elements.end()) return string{};
-
-	auto joined = *cur++;
-	while (cur != elements.end()) {
-		joined += separator + *cur++;
-	}
-	return joined;
+	return join(separator, elements.begin(), elements.end());
 }
 
+std::vector<string> getParams(int argc, char** argv)
+{
+	std::vector<string> args;
+	args.reserve(argc - 1); // without path
+	std::copy(&argv[1], &argv[argc], std::back_inserter(args)); // skip path (argv[0])
+	return args;
+}
 } // namespace util
 } // namespace pong
