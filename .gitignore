@@ -1,3 +1,8 @@
+### CMake user config ###
+# Due to --assume-unchanged overwriting the file and --skip-worktree not allowing you to change branches,
+# this file is now no longer in version control. You have to create it yourself, it can be empty.
+CMake/user_defined_settings.cmake
+
 ### CLion ###
 exportToHtml/
 .idea/
