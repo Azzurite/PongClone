@@ -39,7 +39,7 @@ public:
 	/*!
 	 * @brief Default constructor.
 	 */
-	Surface(std::string fileName) noexcept;
+	explicit Surface(std::string fileName) noexcept;
 
 	/*!
 	 * @brief Default copy constructor.

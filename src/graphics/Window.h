@@ -48,7 +48,7 @@ public:
 	 * @brief Constructs a new window in "Borderless windowed mode" with input grabbed
 	 * @param name name and title of the window
 	 */
-	Window(std::string name);
+	explicit Window(std::string name);
 
 	/*!
 	 * @brief Constructs a new window in fullscreen mode.

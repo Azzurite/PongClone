@@ -41,7 +41,7 @@ public:
 	 * @brief Message constructor.
 	 * @param message the message to be shown by what()
 	 */
-	NotImplementedException(const char* message) noexcept;
+	explicit NotImplementedException(const char* message) noexcept;
 	
 	/*!
 	 * @brief Default copy constructor.
