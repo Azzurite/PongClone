@@ -27,9 +27,11 @@
 #include <chrono>
 #include <thread>
 #include <memory>
+
 #include "SDL.h"
 #include "SDL_image.h"
 #include "SDL_ttf.h"
+#include "SDL2_framerate.h"
 
 #include "graphics/GameWindow.h"
 #include "util/Exceptions.h"
@@ -71,6 +73,11 @@ Game& Game::operator=(Game&& toMove) noexcept = delete;
 
 int Game::loop()
 {
+	auto fps = FPSmanager{};
+	SDL_initFramerate(&fps);
+	SDL_setFramerate(&fps, 120);
+
+	auto x = 0;
 	auto quit = false;
 	while (!quit) {
 		SDL_Event e;
@@ -81,8 +88,11 @@ int Game::loop()
 			}
 		}
 
+		if (x++ == 1000) {
+			SDL_setFramerate(&fps, 60);
+		}
 		mainWindow_->update();
-		std::this_thread::sleep_for(std::chrono::microseconds(4167));
+		SDL_framerateDelay(&fps);
 	}
 
 	return 0;
