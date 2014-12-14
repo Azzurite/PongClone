@@ -24,6 +24,8 @@
 
 #include <stdexcept>
 #include <iostream>
+#include <vector>
+#include <string>
 #include <chrono>
 #include <thread>
 #include <memory>
@@ -35,15 +37,17 @@
 
 #include "graphics/GameWindow.h"
 #include "util/Exceptions.h"
+#include "util/Strings.h"
 using pong::graphics::GameWindow;
 
 namespace pong {
 
-
 // ====== public: ======
 
-Game::Game()
+Game::Game(std::vector<std::string> args)
 {
+	std::cout << "args: " << util::join(", ", args) << std::endl;
+
 	if (SDL_Init(cUSED_SDL_SUBSYSTEMS) != 0) {
 		throw util::sdlError("Error while initializing SDL2.");
 	}
@@ -73,7 +77,7 @@ Game& Game::operator=(Game&& toMove) noexcept = delete;
 
 int Game::loop()
 {
-	auto fps = FPSmanager{};
+	auto fps = FPSmanager{0, 0, 0, 0, 0};
 	SDL_initFramerate(&fps);
 	SDL_setFramerate(&fps, 120);
 

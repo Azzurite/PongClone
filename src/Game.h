@@ -23,6 +23,8 @@
 #pragma once
 
 #include <memory>
+#include <string>
+#include <vector>
 
 #include "SDL.h"
 
@@ -41,7 +43,7 @@ public:
 	/*!
 	 * @brief Default constructor.
 	 */
-	Game();
+	explicit Game(std::vector<std::string> args);
 
 	/*!
 	 * @brief Default copy constructor, deleted

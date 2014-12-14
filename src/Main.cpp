@@ -22,11 +22,11 @@
 
 #include <iostream>
 
+#include "util/Strings.h"
 #include "Game.h"
-
 
 int main(int argc, char* argv[])
 {
-	auto game = pong::Game{};
+	auto game = pong::Game{pong::util::getParams(argc, argv)};
 	return game.loop();
 }
