@@ -12,8 +12,6 @@ set(HAS_LIBS true)
 set(HAS_RESOURCES true) # will copy the resources/ folder to the installation directory
 set(SDL2_PROJECT true)
 set(SDL2_EXTENSIONS ttf image gfx)
-set(SDL2_TTF_PROJECT true)
-set(SDL2_IMAGE_PROJECT true)
 set(BOOST_PROJECT true)
 set(BOOST_COMPONENTS system chrono date_time thread)
 include(CMake/user_defined_settings.cmake)
