@@ -27,7 +27,7 @@ namespace graphics {
 namespace text {
 
 
-class Text
+class Text final
 {
 public:
 

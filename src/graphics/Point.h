@@ -26,7 +26,7 @@ namespace pong {
 namespace graphics {
 
 
-class Point
+class Point final
 {
 public:
 

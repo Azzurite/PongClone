@@ -28,7 +28,7 @@ namespace pong {
 namespace gamestate {
 
 
-class MainMenu : public GameState
+class MainMenu final : public GameState
 {
 public:
 	/*!

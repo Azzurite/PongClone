@@ -30,7 +30,7 @@ namespace pong {
 namespace graphics {
 
 
-class Rect
+class Rect final
 {
 public:
 

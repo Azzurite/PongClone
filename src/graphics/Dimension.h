@@ -26,7 +26,7 @@ namespace pong {
 namespace graphics {
 
 
-class Dimension
+class Dimension final
 {
 public:
 

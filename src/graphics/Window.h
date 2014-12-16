@@ -32,7 +32,7 @@ namespace graphics {
 
 class Renderer;
 
-class Window
+class Window final
 {
 public:
 
