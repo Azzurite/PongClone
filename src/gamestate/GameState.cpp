@@ -30,7 +30,7 @@
 
 #include "graphics/Renderer.h"
 #include "graphics/Texture.h"
-#include "util/NotImplementedException.h"
+#include "exceptions/NotImplementedException.h"
 
 using pong::graphics::Renderer;
 using pong::graphics::Texture;
@@ -77,7 +77,7 @@ void GameState::renderPaused(const Renderer& r) const
 {
 	if (!cachedRender_) {
 		// TODO impl
-		throw util::NotImplementedException{};
+		throw azzu::exceptions::NotImplementedException{};
 //		renderImpl(r);
 //		SDL_Window* w = r.getWindow();
 //		SDL_Surface* windowSurface = SDL_GetWindowSurface(w);

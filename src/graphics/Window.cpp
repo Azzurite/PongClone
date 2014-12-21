@@ -30,7 +30,7 @@ using std::string;
 #include "SDL.h"
 
 #include "graphics/Renderer.h"
-#include "util/Exceptions.h"
+#include "utils/Exceptions.h"
 
 namespace pong {
 namespace graphics {
@@ -71,7 +71,7 @@ Window::Window(string name, Fullscreen fullscreen, State state, bool inputGrabbe
 		: window_(std::move(createWindow(name, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 0, 0, inputGrabbed, fullscreen, state)))
 {
 	if (window_ == nullptr) {
-		throw util::sdlError("Window could not be created.");
+		throw azzu::utils::sdlError("Window could not be created.");
 	}
 }
 
@@ -79,7 +79,7 @@ Window::Window(string name, int x, int y, int h, int w, Border border, State sta
 		: window_(std::move(createWindow(name, x, y, h, w, inputGrabbed, border, state)))
 {
 	if (!window_) {
-		throw util::sdlError("Window could not be created.");
+		throw azzu::utils::sdlError("Window could not be created.");
 	}
 }
 
@@ -97,7 +97,7 @@ Renderer Window::createRenderer(bool vSync) const
 {
 	auto* rendererPtr = SDL_CreateRenderer(window_.get(), -1, vSync ? SDL_RENDERER_PRESENTVSYNC : 0);
 	if (rendererPtr == nullptr) {
-		throw util::sdlError("Error while creating the renderer.");
+		throw azzu::utils::sdlError("Error while creating the renderer.");
 	}
 	Renderer::SDLRendererUPtr renderer(rendererPtr, SDL_DestroyRenderer);
 	return Renderer(std::move(renderer));

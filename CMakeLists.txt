@@ -5,93 +5,49 @@ cmake_minimum_required(VERSION 2.8.12.1)
 ## ----------------                                                      ##
 ## Can be changed across projects                                        ##
 ###########################################################################
+# how the project and the build targets will be called
 set(PROJECT_NAME "Pong_Clone")
+
+# set the installation directory
+set(INSTALL_DIRECTORY "P:/data/pong")
+
+# when false, this will add "src/Main.cpp" to the build and build an executable.
+# otherwise, it will build a library
 set(IS_LIBRARY false)
+# when IS_LIBRARY is true, the headers for the library will be installed here
+set(INSTALL_DIRECTORY_HEADERS "P:/include")
+# set the type of the library, either STATIC or SHARED
+set(LIBRARY_TYPE STATIC)
+set(INSTALL_DIRECTORY_SHARED "P:/lib/share")
+
+# will add the "test" subdirectory and "test/Main.cpp"
 set(HAS_TESTS true)
+
+# will add the lib/ directory to the build if true
 set(HAS_LIBS true)
-set(HAS_RESOURCES true) # will copy the resources/ folder to the installation directory
-set(SDL2_PROJECT true)
-set(SDL2_EXTENSIONS ttf image gfx)
-set(BOOST_PROJECT true)
+# define the names of the built libs to be added to the main target
+list(APPEND LIBS )
+# define the names of the built libs to be added to the test target
+list(APPEND TEST_LIBS GTest GMock)
+
+# will copy the resources/ folder to the installation directory
+set(HAS_RESOURCES true)
+
+# third party libs that will be added with find_package
+list(APPEND THIRD_PARTY_PACKAGES SDL2_gfx SDL2_image SDL2_ttf AzzuUtils SDL2)
+
+# dynamic libraries that will be copied from the lib/ folder to the app directory
+list(APPEND DYNAMIC_LIBRARIES SDL2.dll)
+list(APPEND DYNAMIC_LIBRARIES SDL2_gfx.dll)
+list(APPEND DYNAMIC_LIBRARIES SDL2_image.dll libjpeg-9.dll libpng16-16.dll libtiff-5.dll libwebp-4.dll zlib1.dll)
+list(APPEND DYNAMIC_LIBRARIES libfreetype-6.dll SDL2_ttf.dll zlib1.dll)
+
+# boost libraries
+set(ADD_BOOST true)
 set(BOOST_COMPONENTS system chrono date_time thread)
+
+# Settings necessary for individual computer configurations go in this file
 include(CMake/user_defined_settings.cmake)
 
-
-###########################################################################
-## Project build                                                         ##
-## -------------                                                         ##
-## Should probably not be changed across projects.                       ##
-###########################################################################
-project(${PROJECT_NAME})
-
-###### Compiler flags ######
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -Wall -pedantic -Wextra")
-set(CMAKE_CXX_FLAGS_DEBUG "-Og -ggdb -DDEBUG")
-
-###### Library inclusion #######
-if (${SDL2_PROJECT})
-	include(CMake/add_lib_sdl.cmake)
-endif()
-
-foreach (extension_ ${SDL2_EXTENSIONS})
-	include(CMake/add_lib_sdl_${extension_}.cmake)
-endforeach()
-
-if (${BOOST_PROJECT})
-	include(CMake/add_lib_boost.cmake)
-endif()
-
-######################################
-##       Assemble executables       ##
-######################################
-include(CMake/add_source_files.cmake)
-
-###### Main executable ######
-if (HAS_LIBS)
-	add_subdirectory("lib")
-endif()
-add_subdirectory("src")
-
-include_directories("src")
-
-if (IS_LIBRARY)
-	add_library(${PROJECT_NAME} ${SOURCE_FILES})
-else()
-	add_executable(${PROJECT_NAME} src/Main.cpp ${SOURCE_FILES})
-endif()
-target_link_libraries(${PROJECT_NAME} ${STATIC_LIBRARIES})
-
-#logging
-get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
-message(STATUS "src_include_dirs: ${dirs}")
-message(STATUS "linked libraries:  ${STATIC_LIBRARIES}")
-
-
-###### UnitTest executable ######
-if (HAS_TESTS)
-	add_subdirectory("test")
-
-	set(TEST_PROJECT_NAME ${PROJECT_NAME}_tests)
-
-	add_executable(${TEST_PROJECT_NAME} test/Main.cpp ${SOURCE_FILES} ${TEST_FILES})
-	target_link_libraries(${TEST_PROJECT_NAME} GTest)
-	target_link_libraries(${TEST_PROJECT_NAME} GMock)
-	target_link_libraries(${TEST_PROJECT_NAME} ${STATIC_LIBRARIES})
-endif()
-
-######################################
-##           Installation           ##
-######################################
-include(CMake/copy_lib.cmake)
-include(CMake/copy_resources.cmake)
-
-###### Main executable ######
-if (NOT IS_LIBRARY)
-	copy_libs(${PROJECT_NAME} ${DYNAMIC_LIBRARIES})
-	copy_resources(${PROJECT_NAME})
-endif()
-
-###### UnitTest executable ######
-if (HAS_TESTS)
-	copy_libs(${TEST_PROJECT_NAME} ${DYNAMIC_LIBRARIES})
-endif()
+### Build ###
+include(CMake/project_build.cmake)

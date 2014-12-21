@@ -27,7 +27,7 @@
 #include "SDL.h"
 
 #include "graphics/Texture.h"
-#include "util/Exceptions.h"
+#include "utils/Exceptions.h"
 
 namespace pong {
 namespace graphics {
@@ -37,7 +37,7 @@ namespace graphics {
 Surface::Surface(std::string fileName) noexcept : surface_(SDL_LoadBMP(fileName.c_str()), SDL_FreeSurface)
 {
 	if (!surface_) {
-		throw util::sdlError("Could not load BMP to Surface.");
+		throw azzu::utils::sdlError("Could not load BMP to Surface.");
 	}
 }
 

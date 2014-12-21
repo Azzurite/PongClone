@@ -43,6 +43,12 @@ public:
 	/*!
 	 * @brief Default constructor.
 	 */
+	explicit Game();
+
+	/*!
+	 * @brief Creates the game, handling the supplied arguments
+	 * @param args a vector with the program arguments
+	 */
 	explicit Game(std::vector<std::string> args);
 
 	/*!

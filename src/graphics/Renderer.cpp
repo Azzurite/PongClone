@@ -30,7 +30,7 @@
 #include "graphics/Surface.h"
 #include "graphics/Texture.h"
 #include "graphics/Rect.h"
-#include "util/Exceptions.h"
+#include "utils/Exceptions.h"
 
 namespace pong {
 namespace graphics {
@@ -53,7 +53,7 @@ Texture Renderer::createTexture(const Surface& surface) const
 	auto sdlSurface = (static_cast<SDL_Surface&>(surface));
 	auto texture = make_unique_texture(SDL_CreateTextureFromSurface(renderer_.get(), &sdlSurface));
 	if (!texture) {
-		throw util::sdlError("Failed to create texture from surface.");
+		throw azzu::utils::sdlError("Failed to create texture from surface.");
 	}
 
 	return Texture(std::move(texture));

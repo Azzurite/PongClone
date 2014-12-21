@@ -36,24 +36,26 @@
 #include "SDL2_framerate.h"
 
 #include "graphics/GameWindow.h"
-#include "util/Exceptions.h"
-#include "util/Strings.h"
+#include "utils/Exceptions.h"
+#include "utils/Strings.h"
 using pong::graphics::GameWindow;
 
 namespace pong {
 
 // ====== public: ======
 
+Game::Game() : Game(std::vector<std::string>{}) {}
+
 Game::Game(std::vector<std::string> args)
 {
-	std::cout << "args: " << util::join(", ", args) << std::endl;
+	std::cout << "args: " << azzu::utils::join(", ", args) << std::endl;
 
 	if (SDL_Init(cUSED_SDL_SUBSYSTEMS) != 0) {
-		throw util::sdlError("Error while initializing SDL2.");
+		throw azzu::utils::sdlError("Error while initializing SDL2.");
 	}
 
 	if (TTF_Init() != 0) {
-		throw util::sdlError("Error while initializing SDL_TTF.");
+		throw azzu::utils::sdlError("Error while initializing SDL_TTF.");
 	}
 
 	mainWindow_ = std::make_unique<GameWindow>();

@@ -28,7 +28,7 @@
 #include "SDL.h"
 
 #include "graphics/Renderer.h"
-#include "util/Exceptions.h"
+#include "utils/Exceptions.h"
 #include "Surface.h"
 
 namespace pong {
