@@ -28,7 +28,7 @@ list(APPEND TEST_LIBS GTest GMock)
 set(HAS_RESOURCES true)
 
 # third party libs that will be added with find_package
-list(APPEND THIRD_PARTY_PACKAGES SDL2_gfx SDL2_image SDL2_ttf AzzuUtils SDL2)
+list(APPEND THIRD_PARTY_PACKAGES SDL2_gfx SDL2_image SDL2_ttf AzzuUtils SDL2Wrap SDL2)
 
 # dynamic libraries that will be copied from the lib/ folder to the app directory
 list(APPEND DYNAMIC_LIBRARIES SDL2.dll)

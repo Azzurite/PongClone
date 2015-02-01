@@ -24,6 +24,13 @@
 
 #include "gamestate/GameState.h"
 
+
+namespace sdl2wrap {
+namespace video {
+class Renderer;
+}
+}
+
 namespace pong {
 namespace gamestate {
 
@@ -63,7 +70,7 @@ public:
 
 protected:
 
-	virtual void renderImpl(const pong::graphics::Renderer&) const override;
+	virtual void renderImpl(const sdl2wrap::video::Renderer&) const override;
 
 private:
 

@@ -26,14 +26,10 @@
 #include <string>
 #include <memory>
 
-#include "SDL.h"
+#include "SDL2Wrap.h"
+using sdl2wrap::video::Renderer;
 
-#include "graphics/Renderer.h"
-#include "graphics/Texture.h"
 #include "exceptions/NotImplementedException.h"
-
-using pong::graphics::Renderer;
-using pong::graphics::Texture;
 
 namespace pong {
 namespace gamestate {

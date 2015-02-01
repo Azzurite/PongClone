@@ -1,10 +1,10 @@
 /*! @file
  *
- * @date 16.11.2014
- * @author Azzu
+ * @date 12.12.2014
+ * @author Azzurite
  *
  * @copyright GPL v3
- *   Copyright (C) 2014 Azzu
+ *   Copyright (C) 2014 Azzurite
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,25 +19,33 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
-#pragma once
+ 
+#include "resources/ResourceManager.h"
 
 namespace pong {
-namespace graphics {
+namespace resources {
 
-class Renderer;
 
-class Renderable
-{
-public:
-	/*!
-	 * @brief Default destructor.
-	 */
-	virtual ~Renderable() noexcept;
+// ====== public: ======
 
-	virtual void render(const Renderer&) const = 0;
+ResourceManager::ResourceManager() noexcept = default;
 
-};
+ResourceManager::ResourceManager(const ResourceManager&) noexcept = default;
 
-} // namespace graphics
+ResourceManager::ResourceManager(ResourceManager&&) noexcept = default;
+
+ResourceManager::~ResourceManager() noexcept = default;
+
+ResourceManager& ResourceManager::operator=(const ResourceManager&) noexcept = default;
+
+ResourceManager& ResourceManager::operator=(ResourceManager&&) noexcept = default;
+
+// ====== protected: ======
+
+// ====== private: ======
+
+// ====== freestanding: ======
+
+} // namespace resources
 } // namespace pong
+

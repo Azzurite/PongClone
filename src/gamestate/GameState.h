@@ -23,22 +23,21 @@
 #pragma once
 
 #include <memory>
-#include "graphics/Renderable.h"
 
-namespace pong {
-namespace graphics {
+#include "video/Renderable.h"
+
+namespace sdl2wrap {
+namespace video {
 class Renderer;
 class Texture;
 }
 }
 
-struct SDL_Surface;
-
 namespace pong {
 namespace gamestate {
 
 
-class GameState : public pong::graphics::Renderable
+class GameState : public sdl2wrap::video::Renderable
 {
 public:
 
@@ -78,19 +77,19 @@ public:
 
 	void resume();
 
-	void render(const pong::graphics::Renderer&) const override;
+	void render(const sdl2wrap::video::Renderer&) const override;
 
 protected:
 
-	void renderPaused(const pong::graphics::Renderer&) const;
+	void renderPaused(const sdl2wrap::video::Renderer&) const;
 
-	virtual void renderImpl(const pong::graphics::Renderer&) const = 0;
+	virtual void renderImpl(const sdl2wrap::video::Renderer&) const = 0;
 
 private:
 
 	bool isPaused_ = false;
 
-	mutable std::unique_ptr<pong::graphics::Texture> cachedRender_;
+	mutable std::unique_ptr<sdl2wrap::video::Texture> cachedRender_;
 
 };
 

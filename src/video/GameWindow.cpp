@@ -20,7 +20,7 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "graphics/GameWindow.h"
+#include "video/GameWindow.h"
 
 #include <string>
 #include <sstream>
@@ -39,7 +39,7 @@ using pong::gamestate::GameState;
 using pong::gamestate::MainMenu;
 
 namespace pong {
-namespace graphics {
+namespace video {
 
 namespace {
 const char* const cPONG_WINDOW_NAME = "Pong";
@@ -79,6 +79,6 @@ void GameWindow::update()
 // ====== private: ======
 
 
-} // namespace graphics
+} // namespace video
 } // namespace pong
 

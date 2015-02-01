@@ -34,17 +34,17 @@
 #include "SDL_image.h"
 #include "SDL_ttf.h"
 #include "SDL2_framerate.h"
-
-#include "graphics/GameWindow.h"
 #include "utils/Exceptions.h"
 #include "utils/Strings.h"
-using pong::graphics::GameWindow;
+
+#include "video/GameWindow.h"
+using pong::video::GameWindow;
 
 namespace pong {
 
 // ====== public: ======
 
-Game::Game() : Game(std::vector<std::string>{}) {}
+Game::Game() : Game(std::vector<std::string>{}) { }
 
 Game::Game(std::vector<std::string> args)
 {

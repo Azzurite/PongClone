@@ -30,11 +30,9 @@
 
 namespace pong {
 
-
-namespace graphics {
+namespace video {
 class GameWindow;
 }
-
 
 class Game final
 {
@@ -84,9 +82,9 @@ public:
 
 
 private:
-	std::unique_ptr<graphics::GameWindow> mainWindow_;
+	std::unique_ptr<video::GameWindow> mainWindow_;
 };
 
-constexpr Uint32 cUSED_SDL_SUBSYSTEMS = SDL_INIT_VIDEO | SDL_INIT_AUDIO;
+constexpr uint32_t cUSED_SDL_SUBSYSTEMS = SDL_INIT_VIDEO | SDL_INIT_AUDIO;
 
 } // namespace pong

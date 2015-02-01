@@ -22,13 +22,11 @@
 
 #include "gamestate/MainMenu.h"
 
-#include "graphics/Color.h"
-#include "graphics/Renderer.h"
-#include "graphics/RenderRect.h"
+#include "SDL2Wrap.h"
+using  sdl2wrap::video::Renderer;
+using  sdl2wrap::video::Color;
+using  sdl2wrap::video::Rect;
 
-using pong::graphics::Renderer;
-using pong::graphics::Color;
-using pong::graphics::RenderRect;
 
 namespace pong {
 namespace gamestate {
@@ -51,11 +49,11 @@ MainMenu& MainMenu::operator=(MainMenu&&) noexcept = default;
 
 void MainMenu::renderImpl(const Renderer& renderer) const
 {
-	auto r = RenderRect({{100, 100},
-						 {200, 200},
-						 {255, 255, 255}});
+	auto r = Rect({{100, 100},
+				   {200, 200},
+				   {255, 255, 255}});
 
-	r.render(renderer);
+	renderer.render(r);
 }
 
 // ====== private: ======

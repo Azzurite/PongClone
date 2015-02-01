@@ -1,6 +1,6 @@
 /*! @file
  *
- * @date 07.12.2014
+ * @date 13.12.2014
  * @author Azzurite
  *
  * @copyright GPL v3
@@ -19,14 +19,14 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
-#include "graphics/Point.h"
+ 
+#include "resources/ResourceManager.h"
 
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
 
 namespace pong {
-namespace graphics {
+namespace resources {
 
 // region gmock using statements
 
@@ -125,27 +125,23 @@ using ::testing::AtMost;
 using ::testing::Between;
 // endregion
 
-class PointTest : public Test
+class ResourceManagerTest : public Test
 {
 public:
-	PointTest() { }
+	ResourceManagerTest() {}
+	
+	virtual void SetUp() {}
 
-	virtual void SetUp() { }
-
-	virtual ~PointTest() { }
-
-	virtual void TearDown() { }
+	virtual ~ResourceManagerTest() {}
+	
+	virtual void TearDown() {}
 };
 
-TEST_F(PointTest, Point_Constructors)
+TEST_F(ResourceManagerTest, DefaultTest)
 {
-	auto p = Point{};
-	EXPECT_EQ(0, p.x());
-	EXPECT_EQ(0, p.y());
-	auto p2 = Point(33, 44);
-	EXPECT_EQ(33, p2.x());
-	EXPECT_EQ(44, p2.y());
+//	auto man = ResourceManager{};
+//	man.addResource(FileResource("momo.bmp", ResourceType.IMAGE));
 }
 
-} // namespace graphics
+} // namespace resources
 } // namespace pong

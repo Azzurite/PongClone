@@ -25,19 +25,21 @@
 #include <deque>
 #include <memory>
 
-#include "graphics/Renderable.h"
+#include "video/Renderable.h"
 
-namespace pong {
 
-namespace graphics {
+namespace sdl2wrap {
+namespace video {
 class Renderer;
 }
+}
 
+namespace pong {
 namespace gamestate {
 
 class GameState;
 
-class StateStack final : public graphics::Renderable
+class StateStack final : public sdl2wrap::video::Renderable
 {
 public:
 
@@ -86,7 +88,7 @@ public:
 	 */
 	void pop();
 
-	virtual void render(const graphics::Renderer& renderer) const override;
+	virtual void render(const sdl2wrap::video::Renderer& renderer) const override;
 
 
 protected:

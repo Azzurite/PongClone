@@ -22,14 +22,12 @@
 
 #pragma once
 
-#include "SDL.h"
+#include "SDL2Wrap.h"
 
 #include "gamestate/StateStack.h"
-#include "graphics/Window.h"
-#include "graphics/Renderer.h"
 
 namespace pong {
-namespace graphics {
+namespace video {
 
 
 class GameWindow final
@@ -75,13 +73,13 @@ public:
 
 private:
 
-	Window mainWindow_;
+	sdl2wrap::video::Window mainWindow_;
 
-	Renderer renderer_;
+	sdl2wrap::video::Renderer renderer_;
 
 	gamestate::StateStack stateStack_;
 
 };
 
-} // namespace graphics
+} // namespace video
 } // namespace pong

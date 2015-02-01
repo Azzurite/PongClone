@@ -22,10 +22,10 @@
 
 #include "gamestate/StateStack.h"
 
-#include "graphics/Renderer.h"
-#include "gamestate/GameState.h"
+#include "SDL2Wrap.h"
+using sdl2wrap::video::Renderer;
 
-using pong::graphics::Renderer;
+#include "GameState.h"
 
 namespace pong {
 namespace gamestate {

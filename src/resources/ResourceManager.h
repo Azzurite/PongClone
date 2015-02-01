@@ -1,10 +1,10 @@
 /*! @file
  *
- * @date 16.11.2014
- * @author Azzu
+ * @date 12.12.2014
+ * @author Azzurite
  *
  * @copyright GPL v3
- *   Copyright (C) 2014 Azzu
+ *   Copyright (C) 2014 Azzurite
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,66 +19,55 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
+ 
 #pragma once
 
-#include <memory>
-#include <string>
-
-#include "SDL.h"
-
 namespace pong {
-namespace graphics {
+namespace resources {
 
-class Surface final
+
+class ResourceManager
 {
 public:
-
-	using SDLSurfaceUPtr = std::unique_ptr<SDL_Surface, decltype(&SDL_FreeSurface)>;
 
 	/*!
 	 * @brief Default constructor.
 	 */
-	explicit Surface(std::string fileName) noexcept;
-
+	ResourceManager() noexcept;
+	
 	/*!
 	 * @brief Default copy constructor.
 	 */
-	Surface(const Surface&) noexcept;
-
+	ResourceManager(const ResourceManager&) noexcept;
+		
 	/*!
 	 * @brief Default move constructor.
 	 */
-	Surface(Surface&&) noexcept;
-
+	ResourceManager(ResourceManager&&) noexcept;
+	
 	/*!
 	 * @brief Default destructor.
 	 */
-	~Surface() noexcept;
-
-
+	~ResourceManager() noexcept;
+	
+	
 	/*!
 	 * @brief Default copy assignment operator.
 	 */
-	Surface& operator=(const Surface&) noexcept;
-
+	ResourceManager& operator=(const ResourceManager&) noexcept;
+	
 	/*!
 	 * @brief Default move assignment operator.
 	 */
-	Surface& operator=(Surface&&) noexcept;
-
-	operator SDL_Surface&() { return *surface_; }
-
-	operator SDL_Surface&() const { return *surface_; }
-
+	ResourceManager& operator=(ResourceManager&&) noexcept;
+	
 
 protected:
 
 private:
 
-	SDLSurfaceUPtr surface_;
-
 };
 
-} // namespace graphics
+} // namespace resources
 } // namespace pong
+
