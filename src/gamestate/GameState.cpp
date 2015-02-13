@@ -28,7 +28,6 @@
 
 #include "SDL2Wrap.h"
 using sdl2wrap::video::Renderer;
-
 #include "exceptions/NotImplementedException.h"
 
 namespace pong {
@@ -61,8 +60,7 @@ void GameState::resume()
 
 void GameState::render(const Renderer& r) const
 {
-	if (isPaused_) renderPaused(r);
-	else renderImpl(r);
+	if (isPaused_) renderPaused(r); else renderImpl(r);
 }
 
 
@@ -73,7 +71,7 @@ void GameState::renderPaused(const Renderer& r) const
 {
 	if (!cachedRender_) {
 		// TODO impl
-		throw azzu::exceptions::NotImplementedException{};
+		throw azzu::utils::exceptions::NotImplementedException{};
 //		renderImpl(r);
 //		SDL_Window* w = r.getWindow();
 //		SDL_Surface* windowSurface = SDL_GetWindowSurface(w);

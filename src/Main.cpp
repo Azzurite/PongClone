@@ -22,7 +22,7 @@
 
 #include <iostream>
 
-#include "utils/Strings.h"
+#include "Strings.h"
 #include "Game.h"
 
 int main(int argc, char* argv[])

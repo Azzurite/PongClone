@@ -32,8 +32,8 @@
 #include "gamestate/StateStack.h"
 #include "gamestate/GameState.h"
 #include "gamestate/MainMenu.h"
-#include "utils/Strings.h"
-#include "utils/Exceptions.h"
+#include "Strings.h"
+#include "Exceptions.h"
 
 using pong::gamestate::GameState;
 using pong::gamestate::MainMenu;

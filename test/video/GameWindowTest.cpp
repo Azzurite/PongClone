@@ -6,7 +6,7 @@
  * @copyright GPL v3
  */
 
-#include "graphics/GameWindow.h"
+#include "video/GameWindow.h"
 
 #include "SDL.h"
 
@@ -14,7 +14,7 @@
 #include "gmock/gmock.h"
 
 namespace pong {
-namespace graphics {
+namespace video {
 
 // region gmock using statements
 
